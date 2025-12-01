@@ -34,7 +34,7 @@ The script will:
 
 Default Login Credentials
     If you want to test the login functionality, use the following default user:
-        Username: testuser
+        Username: aquavision
         Password: test123
 
 
