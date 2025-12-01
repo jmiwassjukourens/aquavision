@@ -1,0 +1,113 @@
+<div class="reportes-container">
+
+    <div *ngIf="sinDatos" class="empty-state">
+    <div class="empty-inner">
+      <img src="images/avatar-gotita.png" alt="Sin datos" class="empty-img pulse" />
+
+      <div class="empty-text">
+        <h3>💧 No hay datos del día para mostrar</h3>
+        <p>Todavía no se registró consumo para la fecha seleccionada.</p>
+
+        <br />
+
+      
+        <div class="fecha-navegacion">
+          <button class="flecha-btn" (click)="cambiarDia(-1)">
+            <i class="material-icons">chevron_left</i>
+          </button>
+
+          <span class="fecha-texto">{{ fechaFormateada | titlecase }}</span>
+
+          <button class="flecha-btn" (click)="cambiarDia(1)" [disabled]="esHoy">
+            <i class="material-icons">chevron_right</i>
+          </button>
+        </div>
+
+        <br />
+
+        <button class="btn-exportar" (click)="refrescar()">
+          🔄 Actualizar
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <ng-container *ngIf="!sinDatos">
+    <div class="exports">
+      <div class="exportar-container">
+        <button class="btn-exportar" (click)="exportarExcel()">📥 Exportar XLSX</button>
+        <button class="btn-exportar-pdf" (click)="exportarPDF()">📄 Exportar PDF</button>
+      </div>
+    </div>
+
+    <h2>Reportes de Consumo Diario</h2>
+
+    <div class="fecha-navegacion">
+      <button class="flecha-btn" (click)="cambiarDia(-1)">
+        <i class="material-icons">chevron_left</i>
+      </button>
+
+      <span class="fecha-texto">{{ fechaFormateada | titlecase }}</span>
+
+      <button class="flecha-btn" (click)="cambiarDia(1)" [disabled]="esHoy">
+        <i class="material-icons">chevron_right</i>
+      </button>
+    </div>
+
+    <div class="chart-card slide-left">
+      <h3>Proporción de Consumo por {{ esHogar ? 'Hogar' : 'Sector' }}</h3>
+      <div class="chart-wrapper-proportions">
+        <canvas
+          baseChart
+          [data]="pieChartData"
+          [type]="pieChartType"
+          [options]="pieChartOptions">
+        </canvas>
+      </div>
+    </div>
+
+    <div class="chart-card slide-right">
+      <h3>Consumo Diario</h3>
+      <div class="chart-wrapper">
+        <canvas
+          baseChart
+          [data]="barChartData"
+          [type]="'bar'"
+          [options]="barChartOptions">
+        </canvas>
+      </div>
+    </div>
+
+    <div *ngIf="!esHogar" class="filtros">
+      <div class="filtros-sectores">
+        <h4>Filtrar {{ esHogar ? 'Hogar' : 'Sector' }}</h4>
+        <div class="checkbox-grid">
+          <label *ngFor="let sector of sectoresDisponibles">
+            <input
+              type="checkbox"
+              [(ngModel)]="sectoresSeleccionados[sector]"
+              (change)="actualizarDatos()" />
+            {{ sector }}
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="costos slide-bottom">
+      <br />
+      <h4>Costos por {{ esHogar ? 'Hogar' : 'Sector' }}</h4>
+      <div class="costos-2">
+        <div class="costo-card" *ngFor="let sector of sectoresFiltrados">
+          <div class="costo-header">
+            <span class="sector-nombre">{{ sector.nombre_sector }}</span>
+            <span class="costo-precio">{{ sector.costo | currency:'$ ':'symbol':'1.0-2'}}</span>
+          </div>
+          <div class="costo-detalle">
+            <span>{{ sector.consumo_total }} Litros</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>

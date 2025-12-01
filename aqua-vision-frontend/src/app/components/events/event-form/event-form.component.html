@@ -1,0 +1,57 @@
+<div class="event-form-container">
+
+
+  <div class="event-form-wrapper fade-in">
+
+    <div class="title-form">
+        <div class="form-image">
+          <img src="images/avatar-gotita.png" alt="Mascota AquaVision" class="empty-img">
+        </div>
+       <div> <h2> Crear nuevo evento</h2></div>
+    </div>
+
+    <div class="form-group">
+      <label>Título:</label>
+      <input type="text" [(ngModel)]="newEvent.titulo" placeholder="Ingrese el título">
+    </div>
+
+    <div class="form-group">
+      <label>Descripción:</label>
+      <textarea [(ngModel)]="newEvent.descripcion" placeholder="Ingrese la descripción"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Sector:</label>
+      <select [(ngModel)]="newEvent.sector">
+        <option [ngValue]="undefined" disabled selected>Selecciona un sector</option>
+        <option *ngFor="let s of sectors" [ngValue]="s">{{ s.nombre }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Estado:</label>
+      <select [(ngModel)]="newEvent.estado">
+        <option value="Pendiente">Pendiente</option>
+        <option value="En proceso">En proceso</option>
+        <option value="Cancelado">Cancelado</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Tags:</label>
+      <div class="tag-select-wrapper">
+        <select [(ngModel)]="tagToAdd" (change)="addTagToEvent()">
+          <option [ngValue]="null" disabled selected>Selecciona un tag</option>
+          <option *ngFor="let t of availableTags" [ngValue]="t">{{ t.nombre }}</option>
+        </select>
+        <div class="selected-tags">
+          <span *ngFor="let t of newEvent.tags" [style.background-color]="t.color" class="tag-chip">
+            {{ t.nombre }} <span class="remove" (click)="removeTag(t)">×</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <button class="create-btn" (click)="createEvent()">Crear evento</button>
+  </div>
+</div>

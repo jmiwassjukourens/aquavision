@@ -1,0 +1,71 @@
+.form-container {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2, h3 {
+    text-align: center;
+    color: #333;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    background: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+button:disabled {
+    background: gray;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+}
+
+
+
+.role-option {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+
+.success-message {
+    text-align: center;
+    color: green;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.roles-container-form{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding-top: 1vh;
+}
+
+.roles-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;    
+  }

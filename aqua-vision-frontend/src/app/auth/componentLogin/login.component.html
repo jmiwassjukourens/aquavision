@@ -1,0 +1,31 @@
+<div  class="login-page">
+  <div class="left-panel">
+    <img src="/logonav.png" alt="AquaVision Logo" class="logo-large" />
+  </div>
+
+  <div   class="right-panel">
+    <form (ngSubmit)="onLogin()" class="login-form">
+      <h2>¡Bienvenido!</h2>
+
+      <input
+        type="text"
+        [(ngModel)]="username"
+        name="username"
+        placeholder="Usuario"
+        required
+      />
+      <input
+        type="password"
+        [(ngModel)]="password"
+        name="password"
+        placeholder="Contraseña"
+        required
+      />
+
+
+      <button type="submit">Iniciar Sesión</button>
+
+      <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+    </form>
+  </div>
+</div>

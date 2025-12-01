@@ -1,0 +1,139 @@
+<!-- consumo-admin.component.html -->
+<div class="contenedor-reporte">
+
+  <!-- Exports -->
+  <div class="exports">
+    <div class="exportar-container">
+      <button class="btn-exportar" (click)="exportarExcel()">📥 Exportar XLSX</button>
+      <button class="btn-exportar pdf" (click)="exportarPDF()">📄 Exportar PDF</button>
+    </div>
+  </div>
+
+  <div class="filtros-generales">
+    <div class="inputs-fecha">
+      <label>
+        Desde:
+        <input type="date" [(ngModel)]="fechaDesde">
+      </label>
+      <label>
+        Hasta:
+        <input type="date" [(ngModel)]="fechaHasta">
+      </label>
+      <div class="inputs-fecha-buttom">
+        <button (click)="aplicarFiltro()">Filtrar</button>
+      </div>
+    </div>
+
+    <div class="atajos-tiempo atajos-fecha">
+      <button (click)="setAtajo('7d')">Últimos 7 días</button>
+      <button (click)="setAtajo('1m')">Último mes</button>
+      <button (click)="setAtajo('3m')">Últimos 3 meses</button>
+    </div>
+  </div>
+
+  <div *ngIf="sinDatos" class="empty-state">
+    <div class="empty-inner">
+      <img src="images/avatar-gotita.png" alt="Sin datos" class="empty-img pulse" />
+      <div class="empty-text">
+        <h3>💧 No hay datos para el período seleccionado</h3>
+        <p>Intenta ampliar el rango de fechas.</p>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!sinDatos" class="resumen-global enhanced-resumen">
+    <div class="kpi">
+      <p class="label">Consumo total</p>
+      <p class="value">{{ resumen.total | number:'1.0-2' }} L</p>
+      <p class="small">Periodo: {{ fechaDesde }} → {{ fechaHasta }}</p>
+    </div>
+
+    <div class="kpi">
+      <p class="label">Media diaria</p>
+      <p class="value">{{ resumen.media | number:'1.0-2' }} L</p>
+      <p class="small">Media simple sobre días</p>
+    </div>
+
+    <div class="kpi">
+      <p class="label">Pico</p>
+      <p class="value accent">{{ resumen.pico | number:'1.0-2' }} L</p>
+      <p class="small">Máximo en un día</p>
+    </div>
+
+    <div class="kpi">
+      <p class="label">Costo total</p>
+      <p class="value">{{ resumen.costo | currency:'ARS':'symbol':'1.0-2' }}</p>
+      <p class="small">Estimado</p>
+    </div>
+
+    <div class="kpi action">
+      <button class="info-btn" (click)="toggleTopMeses()">🏆 Ver Top Meses</button>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="grafico-contenedor">
+    <div class="grafico-head">
+      <h3 class="blue_marine_effect">Consumo por día</h3>
+      <div class="grafico-meta">Periodo: {{ fechaDesde }} → {{ fechaHasta }}</div>
+    </div>
+
+    <div class="grafico-body">
+      <!-- ahora es un gráfico de barras (solo consumo) -->
+      <canvas baseChart
+              [data]="chartData"
+              [options]="chartOptions"
+              chartType="bar">
+      </canvas>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Top Meses (mejorado visualmente) -->
+<div class="modal-overlay" *ngIf="showTopMeses" (click)="toggleTopMeses()">
+  <div class="modal-panel" (click)="$event.stopPropagation()" role="dialog" aria-modal="true" aria-label="Top meses">
+    <header class="modal-header">
+      <div class="modal-title-group">
+        <div class="modal-badge">🏆</div>
+        <div>
+          <h3>Top meses — {{ currentYear }}</h3>
+          <p class="modal-sub">Meses ordenados por consumo total</p>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn-sm ghost" (click)="toggleTopMeses()" aria-label="Cerrar modal">✕</button>
+      </div>
+    </header>
+
+    <div class="modal-content">
+      <div *ngIf="!rankingTopMeses || rankingTopMeses.length === 0" class="empty-modal">
+        <p>No hay datos para el año {{ currentYear }} en el período seleccionado.</p>
+      </div>
+
+      <ul class="modal-ranking" *ngIf="rankingTopMeses && rankingTopMeses.length">
+        <li *ngFor="let m of rankingTopMeses; let i = index" class="modal-item">
+          <div class="item-left">
+            <div class="pos">#{{ i + 1 }}</div>
+            <div class="meta">
+              <div class="name">{{ m.mesLabel }}</div>
+              <div class="sub">Promedio: {{ m.media | number:'1.1-2' }} L</div>
+            </div>
+          </div>
+
+          <div class="item-right">
+            <div class="amount">{{ m.total | number:'1.0-2' }} L</div>
+            <div class="progress-outer" aria-hidden="true">
+              <div class="progress-inner" [style.width.%]="computePct(m.total)"></div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <footer class="modal-footer">
+      <small>Tip: ajusta los atajos de fecha para comparar distintos periodos.</small>
+    </footer>
+  </div>
+</div>

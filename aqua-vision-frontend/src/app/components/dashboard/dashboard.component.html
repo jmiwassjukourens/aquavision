@@ -1,0 +1,158 @@
+<!-- dashboard.component.html (actualizado: card admin restaurada y gráfico con Hoy/Ayer) -->
+
+<div *ngIf="isLoading" class="loading-container">
+  <p class="loading-text">Cargando datos del dashboard<span class="dots"></span></p>
+</div>
+
+<div *ngIf="!isLoading" class="title-greeting">
+  <div class="form-image">
+    <img src="images/avatar-gotita.png" alt="Mascota AquaVision" class="empty-img left-img">
+  </div>
+  <div>
+    <h2>Bienvenido a AquaVision!</h2>
+  </div>
+  <img src="images/avatar-gotita.png" alt="Mascota AquaVision" class="empty-img right-img">
+</div>
+
+<div *ngIf="!isLoading" class="dashboard-container">
+  <div class="cards-row slide-left">
+
+    <!-- --- ADMIN VIEW: 4 CARDS --- -->
+    <ng-container *ngIf="isAdmin; else userCards">
+
+    <!-- Opción A: routerLink (recomendada si la ruta es estática) -->
+      <a routerLink="/consumo-admin" class="card info-card" title="Ir a detalle de consumo">
+      <div class="card-hint">Ir a detalles de consumo</div>
+
+        <div class="consumo-main">
+          <span class="consumo-title">Consumo promedio por Hogar</span>
+          <span class="consumo-value">{{ consumoPromedio | number:'1.2-2' }} m³</span>
+        </div>
+
+        <div class="consumo-indicador" [ngClass]="{ 'positivo': consumoDiff < 0, 'negativo': consumoDiff > 0, 'blink-green': consumoDiff < 0, 'blink-red': consumoDiff > 0 }">
+          <ng-container *ngIf="consumoDiff < 0">
+            <mat-icon>arrow_downward</mat-icon>
+            <span>{{ consumoDiffAbs }}% menor que ayer</span>
+          </ng-container>
+          <ng-container *ngIf="consumoDiff > 0">
+            <mat-icon>arrow_upward</mat-icon>
+            <span>{{ consumoDiffAbs }}% mayor que ayer</span>
+          </ng-container>
+          <span *ngIf="consumoDiff === 0">= igual que ayer</span>
+        </div>
+      </a>
+
+
+
+
+
+      <!-- Card 2: Total Trivias completadas -->
+      <a class="card info-card" routerLink="/gamification-admin" title="Ir a detalle de trivias">
+        <div class="card-hint">Ver detalles de gamificación</div>
+        <div class="icon-row">
+          <mat-icon>emoji_events</mat-icon>
+          <span>Total de Puntos Reclamados : <strong>{{ totalTriviasAdmin }}</strong></span>
+        </div>
+      </a>
+
+      <!-- Card 3: Total Eventos -->
+      <a class="card info-card" routerLink="/eventos-admin" title="Ir a detalle de eventos">
+        <div class="card-hint">Ir a listado de eventos</div>
+        <div class="icon-row">
+          <mat-icon>event_available</mat-icon>
+          <span>Total de Eventos: <strong>{{ totalEventosAdmin }}</strong></span>
+        </div>
+      </a>
+
+
+    </ng-container>
+
+    <!-- --- USER CARDS (sin admin) --- -->
+    <ng-template #userCards>
+
+      <!-- Card Consumo Diario (Usuario) -->
+      <a routerLink="/reportes/diario" class="card consumo-card">
+        <div class="card-hint">Ir a ver detalles de consumo diario</div>
+        <div class="consumo-main">
+          <span class="consumo-title">Consumo en lo que va del día:</span>
+          <span [style.color]="consumoColor" class="consumo-value">{{ consumoDia | number:'1.2-2' }} m³</span>
+        </div>
+
+        <div 
+          class="consumo-indicador" 
+          [ngClass]="{ 
+            'positivo': consumoDiff < 0, 
+            'negativo': consumoDiff > 0,
+            'blink-green': consumoDiff < 0, 
+            'blink-red': consumoDiff > 0
+          }"
+        >
+          <ng-container *ngIf="consumoDiff < 0">
+            <mat-icon>arrow_downward</mat-icon>
+            <span style="padding-bottom:6px ;">{{ consumoDiffAbs }}% menor que ayer</span>
+          </ng-container>
+          <ng-container *ngIf="consumoDiff > 0">
+            <mat-icon>arrow_upward</mat-icon>
+            <span>{{ consumoDiffAbs }}% mayor que ayer</span>
+          </ng-container>
+          <span *ngIf="consumoDiff === 0">= igual que ayer</span>
+        </div>
+      </a>
+
+      <!-- Card Medidores (Usuario) -->
+      <a routerLink="/account-settings" class="card info-card">
+        <div class="icon-row">
+          <mat-icon class="ok-icon">check_circle</mat-icon>
+          <span>Medidores conectados: <strong>{{ medidoresConectados }}</strong></span>
+        </div>
+        <div class="icon-row">
+          <mat-icon class="warn-icon">error</mat-icon>
+          <span>Medidores desconectados: <strong>{{ medidoresDesconectados }}</strong></span>
+        </div>
+      </a>
+
+      <!-- Card Alertas (Usuario) -->
+      <a routerLink="/consumption-alerts" class="card info-card">
+        <div class="card-hint">Ir a notificaciones detalladas</div>
+
+        <div class="icon-row">
+          <mat-icon 
+            [ngClass]="{ 'blink-red': cantidadNotificaciones > 0, 'ok-icon': cantidadNotificaciones === 0 }">
+            {{ cantidadNotificaciones > 0 ? 'notification_important' : 'notifications_none' }}
+          </mat-icon>
+
+          <span>
+            <ng-container *ngIf="cantidadNotificaciones > 0; else sinNotificaciones">
+              <strong>
+                Tenés 
+                <span class="notif-count blink-red">({{ cantidadNotificaciones }})</span> 
+                notificaciones nuevas
+              </strong>
+            </ng-container>
+            <ng-template #sinNotificaciones>
+              <strong>No tenés notificaciones nuevas</strong>
+            </ng-template>
+          </span>
+        </div>
+      </a>
+
+    </ng-template>
+
+  </div>
+
+  <!-- Gráfico (ahora admin ve Hoy + Ayer) -->
+  <div class="chart-card chart-fullwidth slide-bottom">
+    <div class="chart-wrapper">
+      <h4 class="consumption-hours-title">
+        {{ isAdmin ? 'Consumo total de hogares por hora' : 'Tus consumos por hora' }}
+      </h4>
+      <canvas
+        baseChart
+        [data]="isAdmin ? lineChartDataAdmin : lineChartData"
+        [options]="lineChartOptions"
+        type="line"
+        (chartClick)="onChartClick($event)">
+      </canvas>
+    </div>
+  </div>
+</div>

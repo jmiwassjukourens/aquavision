@@ -1,0 +1,400 @@
+[
+  {
+    "day": 1,
+    "question": "¿Cuánta agua se pierde si una canilla gotea una vez por segundo durante un día?",
+    "options": ["5 litros", "10 litros", "20 litros", "Más de 30 litros"],
+    "correctAnswer": 3,
+    "explanation": "Un goteo constante puede superar los 30 litros diarios según el caudal de salida."
+  },
+  {
+    "day": 3,
+    "question": "¿Qué acción ayuda más a reducir el consumo al cepillarte los dientes?",
+    "options": ["Usar agua tibia", "Bajar la presión del grifo", "Cerrar la canilla mientras cepillás", "Cepillarse más rápido"],
+    "correctAnswer": 2,
+    "explanation": "Cerrar la canilla puede ahorrar entre 6 y 10 litros por cepillado."
+  },
+  {
+    "day": 1,
+    "question": "¿Qué aparato del hogar puede desperdiciar agua sin que lo notes?",
+    "options": ["Televisor", "Heladera", "Inodoro con pérdida interna", "Microondas"],
+    "correctAnswer": 2,
+    "explanation": "Un inodoro con fuga interna puede perder cientos de litros por día sin ser evidente."
+  },
+  {
+    "day": 1,
+    "question": "¿Cuál es la forma más eficiente de limpiar veredas sin desperdiciar agua?",
+    "options": ["Usar manguera a presión", "Usar balde", "Usar escoba", "Usar detergente puro"],
+    "correctAnswer": 2,
+    "explanation": "El uso de escoba evita el consumo excesivo de la manguera, que puede gastar cientos de litros."
+  },
+  {
+    "day": 1,
+    "question": "¿Cuánta agua se desperdicia dejando correr la canilla mientras te lavás las manos?",
+    "options": ["3 litros", "6 litros", "10 litros", "Hasta 15 litros"],
+    "correctAnswer": 3,
+    "explanation": "Un lavado de manos con la canilla abierta puede perder hasta 15 litros."
+  },
+  {
+    "day": 1,
+    "question": "¿Qué acción hace más eficiente el uso del lavarropas?",
+    "options": ["Usar más jabón", "Llenarlo completamente antes de encender", "Usarlo de noche", "Programarlo en lavado rápido"],
+    "correctAnswer": 1,
+    "explanation": "Llenar el tambor reduce la cantidad de ciclos y por lo tanto el consumo total de agua."
+  },
+  {
+    "day": 1,
+    "question": "¿Por qué es importante revisar periódicamente las conexiones de agua?",
+    "options": ["Por estética", "Porque pueden aflojarse y generar pérdidas invisibles", "Para mejorar la presión", "Para evitar ruidos"],
+    "correctAnswer": 1,
+    "explanation": "Las conexiones flojas generan microfiltraciones que pueden desperdiciar grandes volúmenes con el tiempo."
+  },
+
+
+
+
+
+
+
+
+
+
+  {
+    "day": 2,
+    "question": "¿Cuánta agua se puede gastar lavando el auto con manguera durante 10 minutos?",
+    "options": ["80 litros", "150 litros", "250 litros", "400 litros"],
+    "correctAnswer": 2,
+    "explanation": "Una manguera puede liberar hasta 25 litros por minuto. En 10 minutos se desperdician alrededor de 250 litros."
+  },
+  {
+    "day": 2,
+    "question": "¿Cuál es el método de riego más eficiente para ahorrar agua?",
+    "options": ["Aspersores", "Riego por goteo", "Manguera directa", "Inundación del suelo"],
+    "correctAnswer": 1,
+    "explanation": "El riego por goteo reduce evaporación y lleva el agua directo a las raíces, ahorrando hasta un 60%."
+  },
+  {
+    "day": 2,
+    "question": "¿Cuál es el mejor horario para regar plantas y evitar evaporación?",
+    "options": ["Mediodía", "Media tarde", "Noche", "Temprano por la mañana"],
+    "correctAnswer": 3,
+    "explanation": "Regar temprano reduce la evaporación por temperatura y sol, haciendo más eficiente el riego."
+  },
+  {
+    "day": 2,
+    "question": "¿Qué hábito permite ahorrar más agua al lavar frutas y verduras?",
+    "options": ["Usar agua corriente", "Enjuagar con presión", "Lavarlas en un bol", "Lavar unidad por unidad"],
+    "correctAnswer": 2,
+    "explanation": "Lavarlas en un bol permite reutilizar esa agua para plantas y reduce drásticamente el consumo."
+  },
+  {
+    "day": 2,
+    "question": "¿Cuánta agua pierde una manguera sin pico regulador por minuto?",
+    "options": ["5 litros", "10 litros", "25 litros", "40 litros"],
+    "correctAnswer": 2,
+    "explanation": "Una manguera abierta libera unos 25 litros por minuto, lo que genera desperdicio masivo."
+  },
+  {
+    "day": 2,
+    "question": "¿Qué acción ayuda a reducir el consumo al lavar pisos?",
+    "options": ["Usar manguera", "Usar balde y trapo", "Lavar con agua caliente", "Lavar dos veces seguidas"],
+    "correctAnswer": 1,
+    "explanation": "Usar balde controla la cantidad usada y evita el gasto desmedido de la manguera."
+  },
+  {
+    "day": 2,
+    "question": "¿Por qué el riego excesivo es perjudicial además de desperdiciar agua?",
+    "options": ["Aumenta malezas", "Satura el suelo", "Reduce oxígeno en raíces", "Todas las anteriores"],
+    "correctAnswer": 3,
+    "explanation": "El riego excesivo genera problemas en el suelo y plantas además de desperdiciar agua."
+  },
+
+
+
+
+
+
+
+
+
+
+  {
+    "day": 99,
+    "question": "¿Cuántos litros consume una ducha promedio de 10 minutos?",
+    "options": ["50 litros", "80 litros", "100 litros", "150 litros"],
+    "correctAnswer": 2,
+    "explanation": "Una ducha de 10 minutos consume alrededor de 100 litros según el caudal estándar."
+  },
+  {
+    "day": 99,
+    "question": "¿Qué acción permite ahorrar más agua durante la ducha?",
+    "options": ["Usar agua caliente", "Cerrar mientras te enjabonás", "No usar shampoo", "Ducharse con la puerta abierta"],
+    "correctAnswer": 1,
+    "explanation": "Cerrar la ducha mientras te enjabonás puede ahorrar 20 a 40 litros por sesión."
+  },
+  {
+    "day": 99,
+    "question": "¿Cuánta agua se puede ahorrar reduciendo la ducha a 5 minutos?",
+    "options": ["10 litros", "30 litros", "50 litros", "70 litros"],
+    "correctAnswer": 3,
+    "explanation": "Una ducha corta puede ahorrar hasta 70 litros comparado con una larga."
+  },
+  {
+    "day": 99,
+    "question": "¿Cuál es el mayor responsable del consumo de agua en el baño?",
+    "options": ["Lavamanos", "Inodoro", "Ducha", "Bidet"],
+    "correctAnswer": 2,
+    "explanation": "La ducha suele representar el mayor consumo por su caudal sostenido."
+  },
+  {
+    "day": 99,
+    "question": "¿Cuánta agua se desperdicia dejando la canilla abierta mientras te afeitás?",
+    "options": ["5 litros", "10 litros", "20 litros", "30 litros"],
+    "correctAnswer": 3,
+    "explanation": "El caudal del lavamanos puede causar pérdidas de hasta 30 litros durante una afeitada."
+  },
+  {
+    "day": 99,
+    "question": "¿Qué dispositivo ayuda a reducir el consumo en la ducha?",
+    "options": ["Filtro de carbón", "Cabezal de bajo flujo", "Manguera reforzada", "Aromatizador"],
+    "correctAnswer": 1,
+    "explanation": "Los cabezales eficientes reducen el caudal manteniendo la presión."
+  },
+  {
+    "day": 3,
+    "question": "¿Por qué es importante reparar filtraciones en la ducha?",
+    "options": ["Porque hacen ruido", "Porque dañan el piso", "Porque desperdician agua constantemente", "Porque bajan la presión"],
+    "correctAnswer": 2,
+    "explanation": "Una filtración puede desperdiciar cientos de litros al día sin ser notoria."
+  },
+
+
+
+
+
+
+
+
+
+  {
+    "day": 4,
+    "question": "¿Cuánta agua se desperdicia al dejar correr la canilla mientras lavás los platos?",
+    "options": ["20 litros", "40 litros", "80 litros", "100 litros"],
+    "correctAnswer": 2,
+    "explanation": "Lavar con la canilla abierta puede desperdiciar entre 70 y 100 litros por sesión."
+  },
+  {
+    "day": 4,
+    "question": "¿Cuál es la forma más eficiente de lavar platos?",
+    "options": ["Con agua caliente abierta", "Con esponja y canilla abierta", "Con balde o tapando la pileta", "Lavando uno por uno"],
+    "correctAnswer": 2,
+    "explanation": "Tapar la pileta reduce el consumo y evita el derroche continuo."
+  },
+  {
+    "day": 4,
+    "question": "¿Qué hábito en la cocina genera mayor desperdicio?",
+    "options": ["Descongelar bajo la canilla", "Lavar frutas en bol", "Cerrar canilla entre usos", "Esperar que el agua enfríe"],
+    "correctAnswer": 0,
+    "explanation": "Descongelar bajo agua corriente puede desperdiciar entre 50 y 100 litros."
+  },
+  {
+    "day": 4,
+    "question": "¿Qué electrodoméstico consume más agua al usarse incorrectamente?",
+    "options": ["Microondas", "Heladera", "Lavavajillas", "Pava eléctrica"],
+    "correctAnswer": 2,
+    "explanation": "Usar el lavavajillas medio vacío incrementa el consumo por lavado."
+  },
+  {
+    "day": 4,
+    "question": "¿Por qué es importante reutilizar el agua del lavado de verduras?",
+    "options": ["Mantiene frescura", "Reduce consumo", "Evita desperdicio nutricional", "Mejora el sabor"],
+    "correctAnswer": 1,
+    "explanation": "Reutilizar el agua disminuye notablemente el gasto en actividades diarias."
+  },
+  {
+    "day": 4,
+    "question": "¿Cuál es el impacto de tirar aceite en el desagüe?",
+    "options": ["Se solidifica", "Contamina el agua", "Aumenta la presión del agua", "No genera impacto"],
+    "correctAnswer": 1,
+    "explanation": "Un litro de aceite puede contaminar miles de litros de agua."
+  },
+  {
+    "day": 4,
+    "question": "¿Cuál es la mejor acción para evitar pérdidas en cocina?",
+    "options": ["Cerrar fuerte la canilla", "Usar agua fría", "Reparar goteos", "Dejar la canilla abierta"],
+    "correctAnswer": 2,
+    "explanation": "Un goteo puede perder más de 30 litros al día si no se repara."
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+  {
+    "day": 5,
+    "question": "¿Qué porcentaje del agua del planeta es dulce?",
+    "options": ["10%", "5%", "3%", "1%"],
+    "correctAnswer": 2,
+    "explanation": "Solo el 3% del agua del planeta es dulce, y la mayoría está congelada."
+  },
+  {
+    "day": 5,
+    "question": "¿Cuál es la principal causa de pérdida de agua potable en ciudades?",
+    "options": ["Evaporación", "Filtraciones en tuberías", "Uso doméstico", "Lavado de autos"],
+    "correctAnswer": 1,
+    "explanation": "Las fugas en redes urbanas representan millones de litros perdidos cada día."
+  },
+  {
+    "day": 5,
+    "question": "¿Cuánto agua puede contaminar una sola pila descartada incorrectamente?",
+    "options": ["10 litros", "100 litros", "1.000 litros", "Hasta 50.000 litros"],
+    "correctAnswer": 3,
+    "explanation": "Una pila puede contaminar decenas de miles de litros debido a los metales tóxicos."
+  },
+  {
+    "day": 5,
+    "question": "¿Cuál es la principal fuente de contaminación del agua en zonas urbanas?",
+    "options": ["Basura plástica", "Aceites y grasas en desagües", "Ruido", "Temperatura del agua"],
+    "correctAnswer": 1,
+    "explanation": "El aceite en el desagüe forma películas que afectan ríos y plantas de tratamiento."
+  },
+  {
+    "day": 5,
+    "question": "¿Por qué es importante cuidar los humedales?",
+    "options": ["Son lugares turísticos", "Regulan inundaciones y purifican agua", "Generan viento", "Reducen la temperatura del aire"],
+    "correctAnswer": 1,
+    "explanation": "Los humedales actúan como filtros naturales y protegen fuentes de agua."
+  },
+  {
+    "day": 5,
+    "question": "¿Qué acción doméstica reduce la contaminación del agua?",
+    "options": ["Usar más jabón", "Tirar restos por el inodoro", "Separar residuos y evitar arrojar químicos al desagüe", "Usar desinfectante puro"],
+    "correctAnswer": 2,
+    "explanation": "Evitar químicos y residuos evita contaminar cursos de agua y sistemas cloacales."
+  },
+  {
+    "day": 5,
+    "question": "¿Cuál es el mayor impacto del desperdicio de agua potable?",
+    "options": ["Aumenta la factura", "Reduce reservas naturales", "Genera ruidos en tuberías", "Aumenta la presión"],
+    "correctAnswer": 1,
+    "explanation": "El uso excesivo afecta acuíferos y ríos que requieren largos períodos de recuperación."
+  },
+
+
+
+
+
+
+
+  {
+    "day": 3,
+    "question": "¿Cuál es una forma efectiva de reutilizar agua en casa?",
+    "options": ["Reutilizar agua de lluvia", "Reutilizar agua del inodoro", "Reutilizar agua jabonosa para cocinar", "No reutilizar ninguna"],
+    "correctAnswer": 0,
+    "explanation": "El agua de lluvia puede usarse para riego, limpieza y otras tareas no potables."
+  },
+  {
+    "day": 6,
+    "question": "¿Qué electrodoméstico se vuelve más eficiente si se mantiene limpio el filtro?",
+    "options": ["Pava eléctrica", "Lavarropas", "Heladera", "Lámparas LED"],
+    "correctAnswer": 1,
+    "explanation": "Un filtro limpio mejora el rendimiento y reduce el gasto de agua en operaciones de lavado."
+  },
+  {
+    "day": 6,
+    "question": "¿Cómo se puede reducir el consumo al limpiar pisos?",
+    "options": ["Usar un trapeador o trapo húmedo", "Usar manguera", "Usar esponja y detergente", "Usar agua caliente abundante"],
+    "correctAnswer": 0,
+    "explanation": "Usar un trapeador o un trapo humedo requiere muy poca agua en comparación con la manguera."
+  },
+  {
+    "day": 6,
+    "question": "¿Por qué es útil juntar agua mientras se espera que salga caliente?",
+    "options": ["Para enfriar la cañería", "Para regar o limpiar luego", "Para calentar el baño", "Para controlar la presión"],
+    "correctAnswer": 1,
+    "explanation": "El agua fría inicial puede reutilizarse para múltiples tareas sin desperdiciarse."
+  },
+  {
+    "day": 6,
+    "question": "¿Qué ventaja tienen los aireadores en canillas?",
+    "options": ["Aumentan presión sin más consumo", "Evitan gérmenes", "Eliminan sedimentos", "Mejoran el sabor del agua"],
+    "correctAnswer": 0,
+    "explanation": "Los aireadores mezclan aire con agua y reducen el caudal manteniendo sensación de presión."
+  },
+  {
+    "day": 6,
+    "question": "¿Qué hábito diario ayuda a reducir el consumo sin esfuerzo?",
+    "options": ["Usar más detergente", "Juntar varias tareas antes de abrir la canilla", "Dejar la canilla abierta para no gastar energía al cerrar", "Limpiar solo con agua"],
+    "correctAnswer": 1,
+    "explanation": "Organizar tareas reduce las veces y el tiempo que se mantiene la canilla abierta."
+  },
+  {
+    "day": 6,
+    "question": "¿Por qué es importante evitar fugas pequeñas en exteriores?",
+    "options": ["Son difíciles de ver", "No generan impacto", "Pueden perder cientos de litros al día sin notarse", "Mejoran la presión de la red"],
+    "correctAnswer": 2,
+    "explanation": "Una fuga en mangueras o conexiones externas puede desperdiciar grandes cantidades sin ser evidente."
+  },
+
+
+
+
+
+
+
+  {
+    "day": 7,
+    "question": "¿Cuál es la principal fuente de agua potable para muchas ciudades?",
+    "options": ["Agua de mar filtrada", "Acuíferos subterráneos", "Nubes artificiales", "Humedales"],
+    "correctAnswer": 1,
+    "explanation": "Los acuíferos almacenan agua filtrada naturalmente y abastecen a numerosas ciudades."
+  },
+  {
+    "day": 7,
+    "question": "¿Qué actividad humana afecta más la calidad del agua de los ríos?",
+    "options": ["Senderismo", "Uso de bicicletas", "Vertido de residuos y químicos", "Pesca deportiva"],
+    "correctAnswer": 2,
+    "explanation": "Los químicos y residuos contaminan el agua y dañan los ecosistemas."
+  },
+  {
+    "day": 7,
+    "question": "¿Qué efecto tiene la deforestación sobre el agua?",
+    "options": ["Aumenta lluvias", "Mejora calidad del agua", "Reduce la absorción y aumenta erosión", "Genera agua más limpia"],
+    "correctAnswer": 2,
+    "explanation": "Sin árboles, el suelo no retiene agua y la erosión afecta ríos y lagos."
+  },
+  {
+    "day": 7,
+    "question": "¿Por qué es importante proteger las napas subterráneas?",
+    "options": ["Son fuentes clave de agua potable", "Generan energía", "Evitan inundaciones", "Sirven como depósitos minerales"],
+    "correctAnswer": 0,
+    "explanation": "Las napas abastecen gran parte del agua que consumimos."
+  },
+  {
+    "day": 7,
+    "question": "¿Qué impacto tiene el plástico en el agua?",
+    "options": ["Ninguno", "Solo altera la estética", "Libera microplásticos que contaminan", "Aumenta la presión del agua"],
+    "correctAnswer": 2,
+    "explanation": "Los microplásticos afectan la salud y contaminan reservas naturales."
+  },
+  {
+    "day": 7,
+    "question": "¿Qué acción comunitaria ayuda a reducir contaminación?",
+    "options": ["Regar calles", "Campañas de recolección de residuos", "Aumentar el consumo de agua", "Lavar autos en veredas"],
+    "correctAnswer": 1,
+    "explanation": "Retirar basura evita que llegue a desagües y ríos."
+  },
+  {
+    "day": 7,
+    "question": "¿Por qué es importante no arrojar medicamentos al desagüe?",
+    "options": ["Endurecen las cañerías", "Pueden contaminar ríos y napas", "Generan espuma", "Aumentan la presión del agua"],
+    "correctAnswer": 1,
+    "explanation": "Los compuestos químicos atraviesan sistemas de tratamiento y contaminan fuentes de agua."
+  }
+]

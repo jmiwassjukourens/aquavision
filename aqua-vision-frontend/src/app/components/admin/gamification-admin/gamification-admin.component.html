@@ -1,0 +1,165 @@
+<!-- gamificacion-admin.component.html (actualizado) -->
+<div class="contenedor-reporte">
+
+  <!-- Export / acciones -->
+  <div class="exports">
+    <div class="exportar-container">
+      <button class="btn-exportar" (click)="exportarExcel()">📥 Exportar XLSX</button>
+      <button class="btn-exportar pdf" (click)="exportarPDF()">📄 Exportar PDF</button>
+    </div>
+  </div>
+
+  <div class="filtros-generales">
+
+    <!-- Inputs fecha + botón filtrar -->
+    <div class="inputs-fecha">
+      <label>
+        Desde:
+        <input type="date" [(ngModel)]="fechaDesde">
+      </label>
+
+      <label>
+        Hasta:
+        <input type="date" [(ngModel)]="fechaHasta">
+      </label>
+
+      <div class="inputs-fecha-buttom">
+        <button (click)="aplicarFiltro()">Filtrar</button>
+      </div>
+    </div>
+
+    <!-- Atajos de tiempo -->
+    <div class="atajos-fecha" role="group" aria-label="Atajos de fecha">
+      <button type="button" (click)="setAtajo('7d')">Últimos 7 días</button>
+      <button type="button" (click)="setAtajo('1m')">Último mes</button>
+      <button type="button" (click)="setAtajo('3m')">Últimos 3 meses</button>
+      <button type="button" (click)="setAtajo('6m')">Últimos 6 meses</button>
+    </div>
+
+  </div>
+
+  <!-- Resumen -->
+  <div class="resumen-global">
+    <div>
+      <p><strong>Hogares:</strong> {{ totalHogares }}</p>
+      <p><strong>Puntos totales:</strong> {{ totalPuntos | number:'1.0-0' }}</p>
+    </div>
+
+    <div>
+      <p><strong>Media diaria:</strong> {{ mediaDiaria | number:'1.1-1' }} pts</p>
+      <p><strong>Mejor racha:</strong> {{ mejorRacha }}</p>
+    </div>
+
+    <div class="resumen-actions">
+      <button class="info-btn" (click)="toggleRankingPoints()" aria-label="Abrir ranking puntos">🏆 Ranking Puntos</button>
+      <button class="info-btn" (click)="toggleRankingRachas()" aria-label="Abrir ranking rachas">🔥 Ranking Rachas</button>
+    </div>
+  </div>
+
+  <!-- Charts (APILADOS) -->
+  <div class="chart-column">
+    <div class="chart-card stacked">
+      <div class="chart-wrapper full-width">
+        <h4>Puntos Reclamados por Día</h4>
+        <div class="chart-canvas-wrap">
+          <canvas baseChart
+                  [data]="pointsByDayData"
+                  [options]="pointsByDayOptions"
+                  chartType="bar">
+          </canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="chart-card stacked" style="margin-top:14px;">
+      <div class="chart-wrapper full-width">
+        <h4>Puntos Reclamados por Mes</h4>
+        <div class="chart-canvas-wrap">
+          <canvas baseChart
+                  [data]="pointsByMonthData"
+                  [options]="pointsByMonthOptions"
+                  chartType="line">
+          </canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NOTA: eliminé las cards redundantes de abajo. Usá los modales para ver top/medallas. -->
+
+</div>
+
+<!-- Modal ranking puntos -->
+<div class="info-overlay" *ngIf="showRankingPoints" (click)="toggleRankingPoints()">
+  <div class="info-panel" (click)="$event.stopPropagation()" role="dialog" aria-modal="true" aria-label="Ranking puntos">
+    <header class="info-header">
+      <h3>Top Hogares por Puntos</h3>
+      <button class="close-btn" (click)="toggleRankingPoints()" aria-label="Cerrar ranking">✕</button>
+    </header>
+
+    <div class="info-body">
+      <ul class="ranking-list">
+        <li *ngFor="let r of rankingFullPoints; let i = index" class="ranking-item">
+          <div class="rank-left">
+            <div class="rank-pos">#{{ i + 1 }}</div>
+            <button class="link-name" (click)="openMedallas(r.id, r.nombre)">{{ r.nombre }}</button>
+          </div>
+          <div class="rank-right">
+            <div class="rank-count">{{ r.puntos }} pts</div>
+            <div class="rank-avg">Puntaje ranking: {{ r.puntaje_ranking }}</div>
+          </div>
+        </li>
+      </ul>
+      <p class="tip">💡 Hacé click en un hogar para ver sus medallas.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Modal ranking rachas -->
+<div class="info-overlay" *ngIf="showRankingRachas" (click)="toggleRankingRachas()">
+  <div class="info-panel" (click)="$event.stopPropagation()" role="dialog" aria-modal="true" aria-label="Ranking rachas">
+    <header class="info-header">
+      <h3>Top Hogares por Racha</h3>
+      <button class="close-btn" (click)="toggleRankingRachas()" aria-label="Cerrar ranking">✕</button>
+    </header>
+
+    <div class="info-body">
+      <ul class="ranking-list">
+        <li *ngFor="let r of rankingFullRachas; let i = index" class="ranking-item">
+          <div class="rank-left">
+            <div class="rank-pos">#{{ i + 1 }}</div>
+            <div class="rank-name">{{ r.nombre }}</div>
+          </div>
+          <div class="rank-right">
+            <div class="rank-count">{{ r.racha }} d</div>
+            <div class="rank-avg">Puntos: {{ r.puntos }} pts</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de Medallas de un hogar -->
+<div class="info-overlay" *ngIf="showMedalModal" (click)="closeMedalModal()">
+  <div class="info-panel medals-panel" (click)="$event.stopPropagation()" role="dialog" aria-modal="true" aria-label="Medallas del hogar">
+    <header class="info-header">
+      <h3>Medallas: {{ selectedHogarName }}</h3>
+      <button class="close-btn" (click)="closeMedalModal()" aria-label="Cerrar medallas">✕</button>
+    </header>
+
+    <div class="info-body medals-body">
+      <div *ngIf="selectedHogarMedals?.length; else noMedals">
+        <div class="medal-grid">
+          <div class="medal-card" *ngFor="let m of selectedHogarMedals">
+            <div class="medal-icon">🏅</div>
+            <div class="medal-name">{{ m }}</div>
+          </div>
+        </div>
+      </div>
+      <ng-template #noMedals>
+        <p>No se encontraron medallas para este hogar.</p>
+      </ng-template>
+    </div>
+  </div>
+</div>

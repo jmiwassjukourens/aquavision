@@ -1,0 +1,81 @@
+<div class="notifications-container">
+  <div class="top-row">
+    <h2>Notificaciones del Hogar</h2>
+
+
+<div class="bell-wrapper" aria-hidden="true">
+  <button class="bell-btn" title="Notificaciones">
+    <span class="bell-icon" [class.bell-pulse]="hasUnread()">🔔</span>
+    <span 
+      *ngIf="unreadCount > 0" 
+      class="badge" 
+      [class.badge-pulse]="hasUnread()">
+      {{ unreadCount }}
+    </span>
+  </button>
+</div>
+
+  </div>
+
+  <div class="header-actions">
+    <div class="left-actions">
+      <button class="btn small" (click)="markAllAsRead()" [disabled]="notifications.length === 0">
+        <span class="material-icon">done_all</span> Marcar todas como leídas
+      </button>
+    </div>
+
+    <div class="right-actions">
+      <button class="btn small warn" (click)="deleteAllNotifications()" [disabled]="notifications.length === 0">
+        <span class="material-icon">delete_sweep</span> Eliminar todas
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="loading">Cargando notificaciones...</div>
+
+
+  <div *ngIf="!loading && notifications.length > 0" class="list">
+    <div *ngFor="let n of notifications" 
+         [ngClass]="getCardClass(n)"
+         (click)="onCardClick(n, $event)"
+         role="article"
+         class="notif-wrapper">
+
+      <div class="notif-top">
+        <div class="icon-area">{{ getIcon(n.type) }}</div>
+        <div class="content-area">
+          <h4 class="notif-title">{{ n.title }}</h4>
+          <p class="notif-message">{{ n.message }}</p>
+        </div>
+      </div>
+
+      <div class="notif-bottom">
+        <div class="left-time">{{ timeAgo(n.createdAt) }}</div>
+
+        <div class="right-actions-buttons">
+
+          <button class="action-btn" title="Marcar como leída" (click)="markAsRead(n); $event.stopPropagation()"
+                  [disabled]="n.isRead">
+            <span class="material-icon">done</span>
+          </button>
+
+          <button class="action-btn warn" title="Eliminar" (click)="deleteNotification(n); $event.stopPropagation()">
+            <span class="material-icon">delete</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div *ngIf="!loading && notifications.length === 0" class="empty-state">
+    <div class="empty-inner">
+
+      <img src="images/avatar-gotita.png" alt="Al día" class="empty-img" />
+      <div class="empty-text">
+        <h3>¡Estás al día!</h3>
+        <p>No hay notificaciones pendientes. 🎉</p>
+      </div>
+    </div>
+  </div>
+</div>

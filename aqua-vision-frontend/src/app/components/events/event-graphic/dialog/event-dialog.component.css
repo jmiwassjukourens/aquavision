@@ -1,0 +1,77 @@
+.dialog-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.time-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.time-inputs {
+  display: flex;
+  gap: 16px;
+}
+
+.time-inputs div {
+  display: flex;
+  flex-direction: column;
+}
+
+.adjust-buttons {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.tags-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.selected-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.tag-chip {
+  padding: 4px 8px;
+  border-radius: 12px;
+  color: white;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+}
+
+.tag-chip .remove {
+  cursor: pointer;
+  margin-left: 4px;
+  font-weight: bold;
+}
+
+.adjust-buttons-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; 
+  margin-top: 12px;
+}
+
+.adjust-group {
+  display: flex;
+  align-items: center;
+  gap: 10px; 
+}
+
+.adjust-group label {
+  min-width: 100px;  
+  font-weight: 500;
+}
+
+.adjust-group button {
+  padding: 4px 12px; 
+  min-width: 70px;   
+}

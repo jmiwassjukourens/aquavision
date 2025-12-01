@@ -1,0 +1,53 @@
+<div class="reportes-container">
+  
+  <!-- Navegación por fecha -->
+  <div class="fecha-nav">
+    <button (click)="cambiarDia(-1)">⬅ </button>
+    <span class="fecha">{{ fechaFormateada }}</span>
+    <button (click)="cambiarDia(1)" [disabled]="esHoy"> ➡</button>
+  </div>
+
+  <!-- Filtros de sectores -->
+  <div class="filtros-container">
+    <h4>Filtrar sectores:</h4>
+
+    <div class="checkbox-list">
+      <label *ngFor="let s of sectoresDisponibles">
+        <input type="checkbox" [(ngModel)]="s.seleccionado" (change)="actualizarFiltros()">
+        {{ s.nombre }}
+      </label>
+    </div>
+  </div>
+
+  <br>
+  <h2 class="titulo-principal">Consumo por Hora por Sector</h2>
+
+  <div *ngFor="let item of sectores" class="chart-card fade-in">
+    <h3 class="sector-titulo">{{ item.sector.nombre }}</h3>
+
+    <div class="chart-wrapper">
+      <canvas
+        baseChart
+        [data]="item.chartData"
+        [options]="item.chartOptions"
+        type="line"
+        (chartClick)="onChartClick($event, item)">
+      </canvas>
+    </div>
+
+    <div class="eventos-container" *ngIf="item.eventos.length > 0">
+      <h4>🕒 Eventos del Día</h4>
+      <ul>
+        <li *ngFor="let ev of item.eventos">
+          <div class="evento-card">
+            <div class="evento-header">
+              <span class="evento-titulo">{{ ev.titulo }}</span>
+              <span class="evento-hora">{{ ev.hora }}</span>
+            </div>
+            <p class="evento-descripcion">{{ ev.descripcion || 'Sin descripción' }}</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

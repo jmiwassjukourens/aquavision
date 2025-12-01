@@ -1,0 +1,269 @@
+.wrapper-event {
+  margin: 2rem;
+}
+
+/* === FILTROS === */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.filter-tags,
+.filter-status,
+.sort-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-width: 150px;
+}
+
+.tag-select,
+.status-select {
+  padding: 0.5rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 0.9rem;
+}
+
+.sort-button {
+  background-color: #001f3f;
+  border: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.sort-button:hover {
+  background-color: #0754a1;
+}
+
+.clear-filter {
+  background-color: #e74c3c;
+  border: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  white-space: nowrap;
+}
+
+.clear-filter:hover {
+  background-color: #c0392b;
+}
+
+.selected-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.tag-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 0.85rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.remove-tag {
+  margin-left: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* === TARJETAS === */
+
+.events-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.2rem;
+  margin-bottom: 10vh;
+}
+
+.event-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 1.2rem;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.event-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.15);
+}
+
+/* === HEADER === */
+.event-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+
+.status-badge {
+  padding: 0.35rem 0.8rem;
+  border-radius: 20px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.actions {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.icon-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.edit-button span {
+  color: #2980b9;
+}
+
+.delete-button span {
+  color: #c0392b;
+}
+
+/* === CONTENIDO CENTRAL === */
+.event-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin: 0.2rem 0;
+  color: #2c3e50;
+}
+
+.event-description {
+  font-size: 0.95rem;
+  color: #555;
+  margin: 0.4rem 0 0.6rem 0;
+  line-height: 1.4;
+}
+
+.event-info {
+  font-size: 0.9rem;
+  color: #34495e;
+}
+
+.tags-container {
+  margin-top: 0.5rem;
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.35rem 0.8rem;
+  margin: 0.2rem;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.event-results {
+  margin-top: 0.6rem;
+  padding: 0.6rem;
+  border-radius: 8px;
+  background: #f9f9f9;
+  font-size: 0.9rem;
+  color: #2c3e50;
+  border: 1px solid #eee;
+}
+
+.event-results p {
+  margin: 0.2rem 0;
+}
+
+/* === FOOTER === */
+.event-footer {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  border-top: 1px solid #eee;
+  padding-top: 0.8rem;
+  margin-top: 0.8rem;
+}
+
+.event-dates {
+  font-size: 0.85rem;
+  color: #555;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.footer-action {
+  text-align: right;
+}
+
+.finalize-btn,
+.start-btn {
+  border: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: bold;
+}
+
+.finalize-btn {
+  background-color: #27ae60;
+}
+
+.finalize-btn:hover {
+  background-color: #1e8449;
+}
+
+.start-btn {
+  background-color: #2980b9;
+}
+
+.start-btn:hover {
+  background-color: #1f6391;
+}
+
+
+@media (max-width: 768px) {
+  .filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .events-wrapper {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 13vh;
+  }
+
+  .event-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .event-dates {
+    font-size: 0.8rem;
+  }
+}

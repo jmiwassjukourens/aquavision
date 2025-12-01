@@ -1,0 +1,59 @@
+.terminos-container{
+    padding-left: 4rem;
+    padding-bottom: 3rem;
+    padding-right: 4rem;
+    padding-top: 2rem;
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    box-sizing: border-box;
+}
+
+.terminos{
+    background-color: #ececec;
+    border-radius: 15px;
+    padding-left: 1.5rem;
+    padding-bottom: 2.5rem;
+    padding-top: 2.5rem;
+    width: 80%;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 2px 5px 10px 0px rgba(0, 0, 0, 0.25);
+    margin-bottom: 10rem;
+    margin-top: -2rem;
+}
+
+.heading-terminos {
+    color: var(--gris-fondo);
+    font-size: 32px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.paragraph-terminos {
+    text-align: left;
+    font-weight: 400;
+    width: 90%;
+    margin-bottom: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.terminos-update {
+    text-align: center;
+    color: var(--gris-fondo);
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.subheading-terminos {
+    text-align: left;
+    font-size: 24px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    width: 90%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+}
+

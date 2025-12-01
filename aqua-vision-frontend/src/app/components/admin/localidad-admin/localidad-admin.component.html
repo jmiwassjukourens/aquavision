@@ -1,0 +1,108 @@
+<!-- localidad-admin.component.html -->
+<div class="contenedor-reporte">
+
+  <!-- Export / acciones -->
+  <div class="exports">
+    <div class="exportar-container">
+      <button class="btn-exportar" (click)="exportarExcel()">📥 Exportar XLSX</button>
+      <button class="btn-exportar pdf" (click)="exportarPDF()">📄 Exportar PDF</button>
+    </div>
+  </div>
+
+  <!-- filtros + atajos -->
+  <div class="filtros-generales">
+
+    <div class="inputs-fecha">
+      <label>
+        Desde:
+        <input type="date" [(ngModel)]="fechaDesde">
+      </label>
+
+      <label>
+        Hasta:
+        <input type="date" [(ngModel)]="fechaHasta">
+      </label>
+
+      <div class="inputs-fecha-buttom">
+        <button (click)="aplicarFiltro()">Filtrar</button>
+      </div>
+    </div>
+
+    <div class="atajos-fecha" role="group" aria-label="Atajos de fecha">
+      <button type="button" (click)="setAtajo('7d')">Últimos 7 días</button>
+      <button type="button" (click)="setAtajo('1m')">Último mes</button>
+      <button type="button" (click)="setAtajo('3m')">Últimos 3 meses</button>
+      <button type="button" (click)="setAtajo('6m')">Últimos 6 meses</button>
+    </div>
+
+    <div class="resumen-actions">
+      <button class="info-btn" (click)="toggleRanking()" aria-label="Abrir ranking">🏆 Top Localidades</button>
+    </div>
+  </div>
+
+  <!-- Resumen global -->
+  <div class="resumen-global">
+    <div>
+      <p><strong class="blue_marine_effect">Localidades:</strong> {{ resumenPorLocalidad.length }}</p>
+    </div>
+    <div>
+      <p><strong class="blue_marine_effect">Total global:</strong> {{ totalGlobal | number:'1.0-2' }} L</p>
+    </div>
+  </div>
+
+  <!-- Cards por localidad -->
+  <div class="sectores-cards">
+    <div *ngFor="let r of resumenPorLocalidad" class="card-sector">
+      <h3>{{ r.localidad }}</h3>
+      <p class="card-value">Total: <strong>{{ r.total | number:'1.0-2' }} L</strong></p>
+      <p>Promedio por evento: {{ r.media | number:'1.0-2' }} L</p>
+      <p>Hogares: {{ r.hogares }}</p>
+      <p>Costo: {{ r.costo | currency:'ARS':'symbol':'1.0-2' }}</p>
+    </div>
+  </div>
+
+  <!-- Grafico -->
+  <div class="grafico-contenedor">
+    <div class="grafico-head">
+      <h3 class="blue_marine_effect">Consumo por Localidad</h3>
+      <div class="grafico-meta">Periodo: {{ fechaDesde }} → {{ fechaHasta }}</div>
+    </div>
+
+    <div class="grafico-body">
+      <canvas baseChart
+              [data]="barChartData"
+              [options]="barChartOptions"
+              [type]="'bar'">
+      </canvas>
+    </div>
+  </div>
+
+</div>
+
+<!-- Modal ranking top localidades -->
+<div class="info-overlay" *ngIf="showRanking" (click)="toggleRanking()">
+  <div class="info-panel" (click)="$event.stopPropagation()" role="dialog" aria-modal="true">
+    <header class="info-header">
+      <h3>Top 5 Localidades por Consumo</h3>
+      <button class="close-btn" (click)="toggleRanking()" aria-label="Cerrar">✕</button>
+    </header>
+
+    <div class="info-body">
+      <ul class="ranking-list">
+        <li *ngFor="let r of rankingTop; let i=index" class="ranking-item">
+          <div class="rank-left">
+            <div class="rank-pos">#{{ i + 1 }}</div>
+            <div class="rank-name" title="{{ r.localidad }}">{{ r.localidad }}</div>
+          </div>
+          <div class="rank-right">
+            <div class="rank-count">{{ r.total | number:'1.0-2' }} L</div>
+            <div class="rank-avg">Promedio: {{ r.media | number:'1.1-2' }} L</div>
+            <div class="rank-cost">Costo: {{ r.costo | currency:'ARS':'symbol':'1.0-2' }}</div>
+          </div>
+        </li>
+      </ul>
+
+      <p class="tip">💡 Tip: usa los atajos para cambiar el periodo y actualizar el Top 5.</p>
+    </div>
+  </div>
+</div>

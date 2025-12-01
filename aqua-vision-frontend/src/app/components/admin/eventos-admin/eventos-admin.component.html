@@ -1,0 +1,150 @@
+<!-- eventos-admin.component.html -->
+<div class="contenedor-reporte">
+
+  <!-- Export / acciones -->
+  <div class="exports">
+    <div class="exportar-container">
+      <button class="btn-exportar" (click)="exportarExcel()">📥 Exportar XLSX</button>
+      <button class="btn-exportar pdf" (click)="exportarPDF()">📄 Exportar PDF</button>
+    </div>
+  </div>
+
+  <div class="filtros-generales">
+
+    <!-- Inputs fecha + botón filtrar -->
+    <div class="inputs-fecha">
+      <label>
+        Desde:
+        <input type="date" [(ngModel)]="fechaDesde">
+      </label>
+
+      <label>
+        Hasta:
+        <input type="date" [(ngModel)]="fechaHasta">
+      </label>
+
+      <div class="inputs-fecha-buttom">
+        <button (click)="aplicarFiltro()">Filtrar</button>
+      </div>
+    </div>
+
+    <!-- Atajos de tiempo -->
+    <div class="atajos-fecha" role="group" aria-label="Atajos de fecha">
+      <button type="button" (click)="setAtajo('7d')">Últimos 7 días</button>
+      <button type="button" (click)="setAtajo('1m')">Último mes</button>
+      <button type="button" (click)="setAtajo('3m')">Últimos 3 meses</button>
+      <button type="button" (click)="setAtajo('6m')">Últimos 6 meses</button>
+    </div>
+
+    <!-- Filtros por tags -->
+    <div class="filtros-tags">
+      <div *ngFor="let t of tags" class="tag-pill" [style.borderColor]="t.color">
+        <label>
+          <input type="checkbox" [checked]="selectedTags[t.id]" (change)="toggleTag(t.id)">
+          <span class="tag-name" [style.color]="t.color">{{ t.nombre }}</span>
+        </label>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Resumen -->
+  <div class="resumen-global">
+    <div>
+      <p><strong>Eventos:</strong> {{ totalEventos }}</p>
+      <p><strong>Litros totales:</strong> {{ totalLitros | number:'1.0-2' }} L</p>
+    </div>
+
+    <div>
+      <p><strong>Costo total:</strong> {{ totalCosto | currency:'ARS':'symbol':'1.0-2' }}</p>
+      <p><strong>Tags activos:</strong> {{ activeTagsCount }}</p>
+    </div>
+
+    <div class="resumen-actions">
+      <button class="info-btn" (click)="toggleRanking()" aria-label="Abrir ranking">🏆 Ranking Tags</button>
+    </div>
+  </div>
+
+  <!-- Charts: responsive -->
+  <div class="chart-card">
+    <div class="chart-wrapper">
+      <h4>Eventos por Tag</h4>
+      <canvas baseChart
+              [data]="tagPieData"
+              [options]="chartResponsiveOptions"
+              [type]="'doughnut'">
+      </canvas>
+    </div>
+
+    <div class="chart-wrapper">
+      <h4>Eventos por Día</h4>
+      <canvas baseChart
+              [data]="eventsByDayData"
+              [options]="chartResponsiveOptions"
+              [type]="'bar'">
+      </canvas>
+    </div>
+  </div>
+
+  <!-- Listado de eventos -->
+  <div class="card-sector">
+    <h3>Listado de Eventos</h3>
+
+    <div *ngIf="eventosList.length === 0" class="empty-list">No hay eventos para las selecciones.</div>
+
+    <ul class="event-list" *ngIf="eventosList.length > 0" aria-live="polite">
+      <li *ngFor="let e of eventosList | slice:0:25" class="event-item">
+        <div class="event-header">
+          <div class="event-title" title="{{ e.titulo }}">{{ e.titulo }}</div>
+          <div class="event-time">{{ formatDateTime(e.fechaInicio) }}</div>
+        </div>
+
+        <div class="event-body">
+          <div class="event-desc" *ngIf="e.descripcion; else noDesc">{{ e.descripcion }}</div>
+          <ng-template #noDesc>
+            <div class="event-desc muted">Sin descripción</div>
+          </ng-template>
+
+          <div class="event-meta">
+            <span class="meta-item">💧 <strong>{{ e.litrosConsumidos || 0 }}</strong> L</span>
+            <span class="meta-sep">•</span>
+            <span class="meta-item">{{ e.costo | currency:'ARS':'symbol':'1.0-2' }}</span>
+          </div>
+
+          <div class="tags-inline">
+            <span *ngFor="let t of e.tags" class="tag-inline" [style.background]="t.color">{{ t.nombre }}</span>
+          </div>
+        </div>
+      </li>
+    </ul>
+
+  </div>
+
+</div>
+
+<!-- Modal ranking -->
+<div class="info-overlay" *ngIf="showRanking" (click)="toggleRanking()">
+  <div class="info-panel" (click)="$event.stopPropagation()" role="dialog" aria-modal="true" aria-label="Ranking tags">
+    <header class="info-header">
+      <h3>Top 5 Tags por cantidad de eventos</h3>
+      <button class="close-btn" (click)="toggleRanking()" aria-label="Cerrar ranking">✕</button>
+    </header>
+
+    <div class="info-body">
+      <ul class="ranking-list">
+        <li *ngFor="let r of rankingTop; let i = index" class="ranking-item">
+          <div class="rank-left">
+            <div class="rank-pos">#{{ i + 1 }}</div>
+            <div class="rank-name" title="{{ r.nombre }}">{{ r.nombre }}</div>
+          </div>
+          <div class="rank-right">
+            <div class="rank-count">{{ r.count }} eventos</div>
+            <div class="rank-avg">Promedio: {{ r.avgLitros | number:'1.1-2' }} L</div>
+          </div>
+        </li>
+      </ul>
+
+      <p class="tip">💡 Tip: usa los atajos de fecha para cambiar el periodo y actualizar el ranking.</p>
+    </div>
+  </div>
+</div>

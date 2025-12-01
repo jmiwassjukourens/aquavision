@@ -1,0 +1,113 @@
+<div class="gamification-header">
+  <button class="back-btn" routerLink="/gamificacion">⬅ Volver</button>
+  <h2>Trivia Diaria - {{ dayName }}</h2>
+
+  <div class="sound-control" [class.volume-visible]="showVolume">
+    <span class="sound-icon" [class.muted]="muted" (click)="toggleVolumeVisibility()">🔊</span>
+    <div class="volume-slider" [class.visible]="showVolume">
+      <input type="range" min="0" max="100" [(ngModel)]="volume" (input)="updateVolume()" />
+    </div>
+  </div>
+</div>
+
+<div class="game-container">
+
+<div class="trivia-card animate-fade-in" *ngIf="!triviaFinished">
+  <h3 class="animate-slide-up">{{ questions[currentIndex].question }}</h3>
+
+  <div class="trivia-options">
+    <button
+      *ngFor="let option of questions[currentIndex].options; let i = index"
+      class="animate-slide-up-delay"
+      [style.--delay]="i"
+      [disabled]="answered"
+      (click)="checkAnswer(i)"
+      [ngClass]="{
+        correct: answered && i === questions[currentIndex].correctAnswer,
+        incorrect: answered && selectedIndex === i && i !== questions[currentIndex].correctAnswer
+      }"
+    >
+      {{ option }}
+    </button>
+  </div>
+
+<div class="trivia-justification animate-justification" *ngIf="answered">
+  <div
+    class="justification-box-new"
+    [class.correct-box]="selectedIndex === questions[currentIndex].correctAnswer"
+    [class.incorrect-box]="selectedIndex !== questions[currentIndex].correctAnswer"
+  >
+
+    <div class="status-row">
+      <span class="icon">
+        {{ selectedIndex === questions[currentIndex].correctAnswer ? '✅' : '❌' }}
+      </span>
+
+      <span class="status-text">
+        {{ selectedIndex === questions[currentIndex].correctAnswer ? '¡Correcto!' : 'Incorrecto.' }}
+      </span>
+    </div>
+
+    <p class="justification-text">
+      {{ questions[currentIndex].explanation }}
+    </p>
+
+  </div>
+</div>
+
+  <div class="next-btn-container">
+    <button *ngIf="answered && currentIndex < questions.length - 1" (click)="nextQuestion()">Siguiente pregunta</button>
+    <button *ngIf="answered && currentIndex === (questions.length - 1)" (click)="finishTrivia()">Finalizar</button>
+  </div>
+
+  <p class="trivia-score">Puntaje actual: {{ score }}</p>
+</div>
+
+
+<div class="trivia-end-card animate-fade-in" *ngIf="triviaFinished">
+  <div class="summary-card animate-scale-in">
+
+    <h3>¡Terminaste la trivia del {{ dayName }}!</h3>
+    <p class="final-score">Obtuviste: <strong>{{ score }} puntos.</strong></p>
+
+    <h4 class="summary-title">Resumen de tus respuestas</h4>
+
+    <div class="summary-list">
+      <div
+        class="summary-item animate-sequential"
+        *ngFor="let item of answerHistory; let i = index"
+        [style.animation-delay]="(i * 0.35) + 's'"
+      >
+        <div class="summary-status" 
+             [class.correct-text]="item.correct" 
+             [class.incorrect-text]="!item.correct">
+          {{ item.correct ? '✅ Correcta' : '❌ Incorrecta' }}
+        </div>
+        <p class="summary-question">
+          Pregunta - {{ item.question }}
+        </p>
+        <p class="summary-correct-answer">
+        <strong>Respuesta correcta: </strong>
+        <span class="correct-answer-text">{{ item.correctAnswer }}</span>
+        </p>
+
+        <p class="summary-just"><b>Tené en cuenta:</b>
+          {{ item.explanation }}
+        </p>
+
+      </div>
+    </div>
+
+    <button
+      class="claim-btn animate-fade-in"
+      *ngIf="showClaimButton"
+      (click)="claimPoints()"
+      [disabled]="alreadyClaimed"
+    >
+      {{ alreadyClaimed ? 'Ya reclamado' : 'Reclamar puntos' }}
+    </button>
+
+  </div>
+</div>
+
+</div>

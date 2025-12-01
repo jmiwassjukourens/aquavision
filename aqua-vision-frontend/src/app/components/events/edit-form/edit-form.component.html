@@ -1,0 +1,48 @@
+<div class="edit-form-wrapper">
+  <h2>Editar Evento</h2>
+
+  <form (ngSubmit)="saveChanges()" #editForm="ngForm">
+    <div class="form-group">
+      <label for="title">Título:</label>
+      <input type="text" id="title" [(ngModel)]="eventData.titulo" name="title" required />
+    </div>
+
+    <div class="form-group">
+      <label for="description">Descripción:</label>
+      <textarea id="description" [(ngModel)]="eventData.descripcion" name="description" rows="3"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="sector">Sector:</label>
+      <select id="sector" [(ngModel)]="eventData.sector" name="sector">
+        <option *ngFor="let s of availableSectors" [ngValue]="s">{{ s.nombre }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="status">Estado:</label>
+      <select id="status" [(ngModel)]="eventData.estado" name="status">
+        <option *ngFor="let status of availableStatuses" [value]="status">{{ status }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Etiquetas:</label>
+      <div class="tags-container">
+        <span
+          *ngFor="let tag of availableTags"
+          class="tag"
+          [ngStyle]="{'background-color': tag.color}"
+          (click)="toggleTag(tag)"
+          [class.selected]="isTagSelected(tag)">
+          {{ tag.nombre }}
+        </span>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="save-btn">Guardar cambios</button>
+      <button type="button" class="cancel-btn" (click)="cancel()">Cancelar</button>
+    </div>
+  </form>
+</div>

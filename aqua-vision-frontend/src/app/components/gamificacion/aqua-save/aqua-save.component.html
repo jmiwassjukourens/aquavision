@@ -1,0 +1,87 @@
+<div class="gamification-header">
+  <button class="back-btn" routerLink="/gamificacion">⬅ Volver</button>
+  <h2>AquaSave</h2>
+<div class="sound-control" [class.volume-visible]="showVolume">
+  <span 
+    class="sound-icon" 
+    [class.muted]="muted"
+    (click)="toggleVolumeVisibility()">
+    🔊
+  </span>
+
+  <div class="volume-slider" [class.visible]="showVolume">
+    <input 
+      type="range" 
+      min="0" 
+      max="100" 
+      [(ngModel)]="volume"
+      (input)="updateVolume()" />
+  </div>
+</div>
+</div>
+
+<div class="game-container">
+  <div class="game-layout">
+    
+    <div class="scene-panel">
+      <h3>Sectores</h3>
+<div class="scene-grid">
+  <div 
+    class="scene-card"
+    *ngFor="let scene of scenes; let i = index"
+    [class.active]="i === currentIndex"
+    (click)="goToScene(i)">
+    
+    <img [src]="scene.image" alt="{{ scene.title }}" />
+    <div class="scene-info">
+      <h4>{{ scene.title }}</h4>
+      <p>{{ getClosedLeaks(scene) }}/{{ scene.leaks.length }} fugas cerradas</p>
+    </div>
+  </div>
+
+<div class="scene-card current-info">
+  <div class="scene-info left-align">
+    <h4>Estadísticas generales - {{ currentScene.title }}</h4>
+    <p><strong>Total de fugas solucionadas:</strong> {{ closedLeaksCount }}/{{ currentScene.leaks.length }}</p>
+    <p>
+  <strong>Última revisión:</strong>
+  {{ currentScene.lastRevision ? (currentScene.lastRevision | date:'dd/MM/yyyy - HH:mm') : 'Aún no corregiste ninguna fuga' }}
+</p>
+
+<button 
+  class="claim-btn"
+  [class.pending]="!allLeaksClosed() && !currentScene.alreadyClaimed"
+  [disabled]="!allLeaksClosed() || currentScene.alreadyClaimed"
+  (click)="claimAllPoints()">
+  {{ currentScene.alreadyClaimed
+    ? 'Ya reclamaste los puntos diarios. Volvé mañana para reclamar más.'
+    : allLeaksClosed()
+      ? 'Reclamar puntos'
+      : 'Tenés fugas pendientes para reparar.' }}
+</button>
+  </div>
+</div>
+</div>
+</div>
+
+    <div class="scene-container">
+      <h2>Sector: {{ currentScene.title }}</h2>
+
+      <div class="scene">
+        <img [src]="currentScene.image" class="scene-image" alt="{{ currentScene.title }}" />
+
+        <div
+          *ngFor="let leak of currentScene.leaks"
+          class="leak"
+          [ngStyle]="{ top: leak.y + '%', left: leak.x + '%' }"
+          [class.closed]="leak.closed"
+          (click)="closeLeak(leak)"
+        ></div>
+      </div>
+
+      <div class="score">
+        {{ closedLeaksCount }}/{{ currentScene.leaks.length }} fugas cerradas
+      </div>
+    </div>
+  </div>
+</div>

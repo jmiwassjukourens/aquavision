@@ -1,0 +1,29 @@
+<div class="gamification-header">
+  <button class="back-btn" routerLink="/gamificacion">⬅ Volver</button>
+  <h2>Minijuego: AquaBucket</h2>
+</div>
+
+<div class="game-container">
+  <div *ngIf="!gameStarted" class="game-start-screen">
+    <h3>🎮 Minijuego AquaBucket</h3>
+    <p>Mové el balde con el mouse y atrapá la mayor cantidad de gotas posible.</p>
+    <button (click)="startGame()">Comenzar</button>
+  </div>
+
+  <div *ngIf="gameStarted">
+    <div class="score">💧 Puntos: {{ scoreGame }}</div>
+
+    <div class="arena" #gameContainer>
+      <div
+        class="drop"
+        *ngFor="let drop of drops"
+        [style.left.px]="drop.x"
+        [style.top.px]="drop.y"
+      >
+        💧
+      </div>
+
+      <div class="bucket" [style.left.px]="bucketX">🪣</div>
+    </div>
+  </div>
+</div>

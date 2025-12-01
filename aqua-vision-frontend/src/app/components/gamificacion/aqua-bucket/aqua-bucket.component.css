@@ -1,0 +1,121 @@
+.hidden {
+  display: none;
+}
+
+.game-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-start-screen {
+  width: 500px;
+  height: 400px;
+  border: 2px solid #007bff;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #e0f7fa, #b3e5fc);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  padding: 2rem;
+}
+
+.game-start-screen h3 {
+  font-size: 1.8rem;
+  color: #01579b;
+  margin-bottom: 1rem;
+}
+
+.game-start-screen p {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+  max-width: 80%;
+}
+
+.game-start-screen button {
+  font-size: 1.2rem;
+  padding: 0.8rem 2rem;
+  border-radius: 10px;
+  background: #007bff;
+  color: #fff;
+  font-weight: bold;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.game-start-screen button:hover {
+  transform: scale(1.05);
+  background: #0056b3;
+}
+
+.arena {
+  position: relative;
+  width: 500px;
+  height: 400px;
+  border: 2px solid #007bff;
+  background: linear-gradient(#e0f7fa, #b3e5fc);
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.score {
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #01579b;
+}
+
+.drop {
+  position: absolute;
+  font-size: 28px;
+  width: 28px;
+  height: 28px;
+  text-align: center;
+}
+
+.bucket {
+  position: absolute;
+  bottom: 10px;
+  font-size: 40px;
+  width: 80px;
+  height: 40px;
+  text-align: center;
+}
+
+.gamification-header {
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  padding: 10px 20px;
+  background-color: #0000000f;
+  position: relative; 
+}
+
+.back-btn {
+  position: absolute;
+  left: 25px; 
+  background: #0288d1;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.back-btn:hover {
+  background: #0277bd;
+}
+
+.gamification-header h2 {
+  margin: 0;
+  font-size: 1.6rem;
+  color: #3a3a3a;
+  text-align: center;
+  flex-grow: 1;
+}

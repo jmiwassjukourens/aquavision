@@ -1,0 +1,137 @@
+<div class="reportes-container">
+  <div class="titulo-row">
+    <h2 class="titulo-principal">Predicción de Consumo</h2>
+
+
+    <button class="info-btn" (click)="toggleInfo()" aria-label="Información sobre parámetros">
+      <span class="info-icon">ℹ️</span>
+      <span class="info-label">¿Qué significan?</span>
+      <span class="pulse-ring" aria-hidden="true"></span>
+    </button>
+  </div>
+
+  <div class="acciones-superiores">
+    <button class="btn-filtro" (click)="mostrarFiltros = !mostrarFiltros">
+      <i class="fa-solid fa-filter"></i>
+      Filtros
+      <i class="fa-solid" [ngClass]="mostrarFiltros ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+    </button>
+  </div>
+
+
+  <div class="info-overlay" *ngIf="showInfo" (click)="toggleInfo()">
+    <div class="info-panel slide-in" (click)="$event.stopPropagation()" role="dialog" aria-modal="true">
+      <header class="info-header">
+        <h3>Acerca de los parámetros</h3>
+        <button class="close-btn" (click)="toggleInfo()" aria-label="Cerrar información">✕</button>
+      </header>
+
+      <div class="info-body">
+        <p class="lead">Aquí tienes una guía rápida de qué representa cada línea del gráfico:</p>
+
+        <ul class="info-list">
+          <li>
+            <strong>Actual</strong>
+            <p class="muted">Consumo medido real por día (datos históricos y actuales).</p>
+            <div class="mini-bar">
+              <div class="bar current" style="width:65%"></div>
+            </div>
+          </li>
+
+          <li>
+            <strong>Proyectado</strong>
+            <p class="muted">Estimación futura basada en patrones recientes y el modelo predictivo.</p>
+            <div class="mini-bar">
+              <div class="bar projected" style="width:45%"></div>
+            </div>
+          </li>
+
+          <li>
+            <strong>Tendencia Mín</strong>
+            <p class="muted">Límite inferior de las predicciones (intervalo de confianza).</p>
+            <div class="mini-bar">
+              <div class="bar min" style="width:30%"></div>
+            </div>
+          </li>
+
+          <li>
+            <strong>Tendencia Máx</strong>
+            <p class="muted">Límite superior (escenario peor / mayor consumo esperado).</p>
+            <div class="mini-bar">
+              <div class="bar max" style="width:80%"></div>
+            </div>
+          </li>
+        </ul>
+
+        <p class="tip">💡 Tip: Usa los filtros para combinar qué series quieres ver; por ejemplo "Actual + Proyectado" para comparar.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filtros -->
+  <div class="filtros-sectores slide-down" *ngIf="mostrarFiltros">
+    <h4>Filtrar por sector</h4>
+    <div class="checkbox-grid">
+      <label *ngFor="let sector of sectores">
+        <input
+          type="checkbox"
+          [checked]="sectoresFiltrados.includes(sector.nombre)"
+          (change)="toggleFiltroSector(sector.nombre)"
+        />
+        {{ sector.nombre }}
+      </label>
+    </div>
+
+    <hr style="margin: 1.5rem 0; border: none; border-top: 1px solid #ddd;">
+
+    <h4>Filtrar por tipo de dato</h4>
+    <div class="checkbox-grid">
+      <label *ngFor="let key of (filtrosParametros | keyvalue)">
+        <input
+          type="checkbox"
+          [checked]="key.value"
+          (change)="toggleFiltroParametro(key.key)"
+        />
+        {{ key.key }}
+      </label>
+    </div>
+  </div>
+
+  <!-- Renderizado de sectores filtrados -->
+  <div *ngFor="let sector of sectoresFiltradosData" class="chart-card fade-in">
+    <h3 class="sector-titulo">{{ sector.nombre }}</h3>
+
+    <div class="chart-wrapper">
+      <canvas
+        baseChart
+        [data]="sector.lineChartData"
+        [options]="lineChartOptions"
+        [type]="'line'">
+      </canvas>
+    </div>
+
+    <!-- GRID DE DATOS E HALLAZGOS -->
+    <div class="resumen-grid">
+      <div class="datos-consumo">
+        <h4>📊 Resumen de Consumo</h4>
+        <ul>
+          <li><strong>💧 Gasto actual:</strong> ${{ sector.costoActual }}</li>
+          <li><strong>📈 Gasto proyectado:</strong> ${{ sector.costoProyectado }}</li>
+          <li><strong>📉 Tendencia mínima:</strong>
+            {{ sector.tendenciaMinima !== null ? (sector.tendenciaMinima | number:'1.0-2') + ' L' : 'N/A' }}
+          </li>
+          <li><strong>📈 Tendencia máxima:</strong>
+            {{ sector.tendenciaMaxima !== null ? (sector.tendenciaMaxima | number:'1.0-2') + ' L' : 'N/A' }}
+          </li>
+        </ul>
+      </div>
+
+      <div class="hallazgos" *ngIf="sector.hallazgosClave.length > 0">
+        <h4>💡 Hallazgos clave</h4>
+        <ul>
+          <li *ngFor="let hallazgo of sector.hallazgosClave">{{ hallazgo }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

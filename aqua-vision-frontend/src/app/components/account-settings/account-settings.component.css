@@ -1,0 +1,39 @@
+.button-logout {
+  padding: 8px 16px;
+  background-color: #d93025;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  --margin: 40px;
+  border: transparent;
+  border-radius: 5px;
+  width: 10rem;
+  position: fixed;
+  bottom: 4rem;   /* separación desde el footer o borde inferior */
+  left: 50%;      /* lo llevás al centro */
+  transform: translateX(-50%); /* corrección para que quede centrado de verdad */
+}
+
+/* Tablet large */
+@media (max-width: 1024px) {
+  .button-logout{
+    position: relative;
+    bottom: -2rem;
+  }
+}
+/* Tablet / small */
+@media (max-width: 768px) {
+  .button-logout{
+    position: relative;
+    margin-top: 0.5rem;
+    bottom: 5rem;
+  }
+}
+/* Mobile */
+@media (max-width: 480px) {
+  .button-logout{
+    position: relative;
+    bottom: 5.5rem;
+  }
+}

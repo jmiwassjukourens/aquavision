@@ -1,0 +1,68 @@
+<div class="contenedor-reporte">
+
+  <div class="exports">
+    <div class="exportar-container">
+      <button class="btn-exportar" (click)="exportarExcel()">📥 Exportar XLSX</button>
+      <button class="btn-exportar pdf" (click)="exportarPDF()">📄 Exportar PDF</button>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="filtros-generales slide-top">
+    <div class="inputs-fecha">
+      <div class="inputs-fecha-container">
+        <div>
+          <label>Desde:
+            <input type="date" [(ngModel)]="fechaDesde">
+          </label>
+          <label>Hasta:
+            <input type="date" [(ngModel)]="fechaHasta">
+          </label>
+        </div>
+        <div class="inputs-fecha-buttom">
+          <button (click)="aplicarFiltro()">Filtrar</button>
+        </div>
+      </div>
+    </div>
+      <div class="atajos-tiempo slide-top">
+        <button (click)="setAtajo('7d')">Últimos 7 días</button>
+        <button (click)="setAtajo('1m')">Último mes</button>
+        <button (click)="setAtajo('3m')">Últimos 3 meses</button>
+        <button (click)="setAtajo('6m')">Últimos 6 meses</button>
+      </div>
+
+  </div>
+
+
+
+  <div class="resumen-global">
+    <p><strong class="blue_marine_effect">Consumo total:</strong> {{ totalGlobal | number:'1.0-2' }} L</p>
+    <p><strong class="blue_marine_effect">Media promedio:</strong> {{ mediaGlobal | number:'1.0-2' }} L</p>
+    <p><strong class="blue_marine_effect">Pico máximo:</strong> {{ picoGlobal | number:'1.0-2' }} L</p>
+    <p><strong class="blue_marine_effect">Costo total:</strong> {{ costoGlobal | currency:'$ ':'symbol':'1.0-2' }}</p>
+    <br>
+  </div>
+ <br>
+<div class="sectores-cards slide-bottom">
+  <ng-container *ngFor="let sector of resumenPorSector | keyvalue">
+    <div *ngIf="sector.key !== 'HOGAR'" class="card-sector">
+      <h3>{{ sector.key }}</h3>
+      <p>Total: {{ sector.value.total | number:'1.0-2' }} L</p>
+      <p>Media: {{ sector.value.media | number:'1.0-2' }} L</p>
+      <p>Pico: {{ sector.value.pico | number:'1.0-2' }} L</p>
+      <p>Costo: {{ sector.value.costo | currency:'$ ':'symbol':'1.0-2' }}</p>
+    </div>
+  </ng-container>
+</div>
+
+
+  <div class="grafico-contenedor slide-bottom">
+    <h3 class="blue_marine_effect">Histórico de valores</h3>
+    <canvas baseChart
+            [data]="barChartData"
+            [options]="barChartOptions"
+            chartType="bar">
+    </canvas>
+  </div>
+</div>

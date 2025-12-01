@@ -1,0 +1,119 @@
+<div class="gamification-header">
+  <button class="back-btn" routerLink="/gamificacion">⬅ Volver</button>
+  <h2>AquaMatch</h2>
+  <div class="sound-control" [class.volume-visible]="showVolume">
+    <span class="sound-icon" [class.muted]="muted" (click)="toggleVolumeVisibility()">
+      🔊
+    </span>
+
+    <div class="volume-slider" [class.visible]="showVolume">
+      <input type="range" min="0" max="100" [(ngModel)]="volume" (input)="updateVolume()" />
+    </div>
+  </div>
+</div>
+
+<div class="aquamatch-layout">
+  <div
+    class="aquamatch-board"
+    #container
+    (mousemove)="onMove($event)"
+    (mouseup)="onEnd($event)"
+    (touchmove)="onMove($event)"
+    (touchend)="onEnd($event)"
+  >
+    <div *ngIf="showIntro" class="intro-screen">
+      <div class="intro-box">
+        <p>💧 En este juego vas a aprender cómo cuidar el agua uniendo tarjetas relacionadas.</p>
+        <button class="start-btn" (click)="startGame()">Comenzar juego</button>
+      </div>
+    </div>
+
+    <div *ngIf="showNextLevel" class="intro-screen">
+      <p>🎉 ¡Excelente! Completaste el nivel {{ currentLevel }}.</p>
+      <p>¿Listo para seguir aprendiendo y ganar más puntos?</p>
+      <button class="start-btn" (click)="nextLevel()">Siguiente nivel 🚀</button>
+    </div>
+
+    <div *ngIf="finalMessage" class="intro-screen">
+      <p>🏆 ¡Felicitaciones! Completaste todos los niveles de AquaMatch.</p>
+      <p>Segui así para convertirte en un experto en el cuidado del agua.</p>
+    </div>
+
+    <ng-container *ngIf="!showIntro">
+      <div
+        *ngFor="let card of leftCards"
+        class="card left-card"
+        [class.wrong]="card.isWrong"
+        [style.left.px]="card.x"
+        [style.top.px]="card.y"
+        (mousedown)="startDrag($event, card)"
+        (touchstart)="startDrag($event, card)"
+      >
+        <div class="card-text">{{ card.text }}</div>
+      </div>
+
+      <div
+        *ngFor="let card of rightCards"
+        class="card right-card"
+        [class.wrong]="card.isWrong"
+        [style.left.px]="card.x"
+        [style.top.px]="card.y"
+      >
+        <div class="card-text">{{ card.text }}</div>
+      </div>
+    </ng-container>
+  </div>
+
+<div class="aquamatch-info">
+  <h3>💧 Consejos obtenidos</h3>
+
+  <div class="tips-scroll-area">
+    <div class="tips-container">
+      <div *ngIf="mergedCards.length === 0" class="locked-info">
+        🔒 Uní las tarjetas para descubrir consejos sobre cómo cuidar el agua.
+      </div>
+
+      <div *ngFor="let merged of mergedCards" class="merged-card">
+        <div class="merged-card-header">
+          <div class="left-text">  {{ merged.leftText }} {{ merged.rightText.charAt(0).toLowerCase() + merged.rightText.slice(1) }}</div>
+        </div>
+        <div class="merged-card-tip">
+          💡 {{ merged.tip }}
+        </div>
+        <button class="claim-btn" *ngIf="!merged.claimed" (click)="claimPoints(merged)">
+          ✅ Entendido
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="scene-card current-info stats-panel">
+    <div class="scene-info left-align">
+      <h4>Estadísticas generales</h4>
+      <p><strong>Niveles completados:</strong> {{ currentLevel - 1 }} </p>
+
+      <p>
+        <strong>Última obtención:</strong>
+        {{
+          lastClaimDate ? (lastClaimDate | date:'dd/MM/yyyy - HH:mm') : 'Aún no reclamaste puntos'
+        }}
+      </p>
+
+<button
+  class="claim-btn"
+  [class.claimed]="alreadyClaimed"
+  (click)="claimAllPoints()"
+  [disabled]="isClaimButtonDisabled()"
+>
+  {{
+    alreadyClaimed
+      ? 'Ya reclamaste los puntos diarios. Volvé mañana para reclamar más.'
+      : (allClaimed()
+          ? 'Reclamar puntos'
+          : 'Completá todos los desafíos para reclamar.')
+  }}
+</button>
+    </div>
+  </div>
+</div>
+</div>

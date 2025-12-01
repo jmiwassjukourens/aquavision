@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  
+  
+  <main [ngStyle]="{ 'background-color': isLoggedIn ? '#F4F4F4' : '#fdfdfd' }">
+   
+    <div class="container-header" *ngIf="isLoggedIn">
+                <div class="logo">
+                <a href="/dashboard">
+                  <img id="logo" class="logo_img" src="/Logoblanco.png?v=2" alt="Logo">
+                </a>
+              </div>
+    <header>
+      <div class="menu-toggle" (click)="toggleMenu()">
+        <span class="span_nav" *ngIf="!isMenuActive">☰</span>
+        <span class="span_nav" *ngIf="isMenuActive">✖</span>
+      </div> 
+
+      <nav id="menu" [ngClass]="{ 'active': isMenuActive }">
+        <ul class="un-header">
+ 
+          <li *ngIf="isUser || isAdmin" class="list-item-navbar">
+            <a routerLink="/dashboard" (click)="closeMenu()">Inicio</a>
+          </li>
+
+      
+          <li class="submenu" *ngIf="isUser">
+            <a (click)="toggleService(0)" class="boton-item-navbar">Consumo ▾</a>
+            <ul *ngIf="expandedIndex === 0" class="submenu-list">
+              <li class="list-subitem-navbar"><a routerLink="/reportes/diario" (click)="closeMenu()">▸ Reporte diario</a></li>
+              <li class="list-subitem-navbar"><a routerLink="/reportes/historico" (click)="closeMenu()">▸ Reporte histórico</a></li>
+              <li class="list-subitem-navbar"><a routerLink="/consumption-prediction" (click)="closeMenu()">▸ Predicción</a></li>
+            </ul>
+          </li>
+
+          <li class="submenu" *ngIf="isUser">
+            <a (click)="toggleService(1)" class="boton-item-navbar">Mis Actividades ▾</a>
+            <ul *ngIf="expandedIndex === 1" class="submenu-list">
+              <li class="list-subitem-navbar"><a routerLink="/events/summary" (click)="closeMenu()">▸ Resumen</a></li>
+              <li class="list-subitem-navbar"><a routerLink="/events" (click)="closeMenu()">▸ Detalle</a></li>
+              <li class="list-subitem-navbar"><a routerLink="/events/create" (click)="closeMenu()">▸ Nueva Actividad</a></li>
+            </ul>
+          </li>
+
+
+          <li *ngIf="isUser" class="list-item-navbar">
+            <a routerLink="/gamificacion" (click)="closeMenu()">AquaQuest</a>
+          </li>
+                    
+
+           <li *ngIf="isAdmin" class="list-item-navbar"><a routerLink="/consumo-admin" (click)="closeMenu()">Consumos</a></li>
+           <li *ngIf="isAdmin" class="list-item-navbar"><a routerLink="/eventos-admin" (click)="closeMenu()">Eventos</a></li>
+           <li *ngIf="isAdmin" class="list-item-navbar"><a routerLink="/localidad-admin" (click)="closeMenu()">Localidades</a></li>
+           <li *ngIf="isAdmin" class="list-item-navbar"><a routerLink="/gamification-admin" (click)="closeMenu()">Trivias</a></li>
+           <li *ngIf="!isAdmin" class="list-item-navbar"><a routerLink="/consumption-alerts" (click)="closeMenu()">Notificaciones</a></li>
+
+
+
+
+
+          <li *ngIf="!isAdmin" class="list-item-navbar">
+            <a routerLink="/account-settings" (click)="closeMenu()">Mi Cuenta</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+
+
+    </div>
+    <app-loader>
+
+    </app-loader>
+    <router-outlet>
+      
+    </router-outlet>
+    
+ 
+  </main>
+  
+  
+<footer *ngIf="isLoggedIn">
+  <div class="footer-container">
+    <span class="footer-text">© 2025 AquaVision - Todos los derechos reservados</span>
+    <div class="footer-divider"></div>
+    <a href="/privacidad" class="footer-link">Política de Privacidad</a>
+    <div class="footer-divider"></div>
+    <a href="/terminos" class="footer-link">Términos y Condiciones</a>
+  </div>
+</footer>
+
+
+  
+</body>
+</html>

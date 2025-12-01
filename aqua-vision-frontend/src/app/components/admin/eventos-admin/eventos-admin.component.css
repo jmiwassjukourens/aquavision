@@ -1,0 +1,267 @@
+/* eventos-admin.component.css - versión con estilos de filtros/atajos mejorados */
+
+.contenedor-reporte {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto 8vh auto;
+  background: linear-gradient(180deg,#f7fbff,#f8fafc);
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  color: #04303a;
+}
+
+/* Exports */
+.exports { display: flex; justify-content: flex-end; margin-bottom: 12px; }
+.exportar-container { display: flex; gap: 0.5rem; }
+.btn-exportar {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  box-shadow: 0 8px 22px rgba(40,167,69,0.10);
+}
+.btn-exportar:hover { transform: translateY(-2px); }
+.btn-exportar.pdf { background-color: #e74c3c; box-shadow: 0 8px 22px rgba(231,76,60,0.10); }
+
+/* Filtros generales */
+.filtros-generales {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+  justify-content: space-between;
+}
+
+/* Inputs fecha (estilo como localidad) */
+.inputs-fecha {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  background: #fff;
+  padding: 12px 14px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(6,30,40,0.04);
+  border: 1px solid rgba(3,37,76,0.04);
+  min-width: 260px;
+}
+.inputs-fecha label { display:flex; flex-direction:column; font-size: 0.95rem; color: #21343a; }
+.inputs-fecha input[type="date"] { padding: 8px 10px; border: 1px solid #e3e8ee; border-radius: 8px; background:#fbfdff; }
+.inputs-fecha-buttom { display:flex; align-items:center; }
+.inputs-fecha button {
+  padding: 8px 16px;
+  background: linear-gradient(90deg,#034f84,#012a4a);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-weight:700;
+  box-shadow: 0 8px 22px rgba(1,42,74,0.10);
+}
+.inputs-fecha button:hover { transform: translateY(-2px); transition: transform 150ms ease; }
+
+/* Atajos de fecha (estilo localidad) */
+.atajos-fecha {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.atajos-fecha button {
+  background: #eef6ff;
+  color: #012a4a;
+  border-radius: 8px;
+  padding: 6px 10px;
+  border: 1px solid #dbeeff;
+  cursor: pointer;
+  font-weight: 600;
+}
+.atajos-fecha button:hover { background:#012a4a; color:#fff; transform: scale(1.03); }
+
+/* Tags pills */
+.filtros-tags { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-left: auto; }
+.tag-pill {
+  padding:6px 8px;
+  border:1px solid #e6eef7;
+  border-radius:8px;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  box-shadow: 0 6px 18px rgba(3,37,76,0.02);
+}
+.tag-pill input { margin-right:6px; }
+.tag-name { font-weight:700; }
+
+/* Resumen global */
+.resumen-global {
+  display:flex;
+  gap:12px;
+  align-items:center;
+  justify-content: space-between;
+  flex-wrap:wrap;
+  margin-bottom: 12px;
+}
+.resumen-actions { display:flex; align-items:center; gap:8px; }
+
+/* Info / ranking button (azul) */
+.info-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: linear-gradient(90deg, #0ea5e9, #2563eb);
+  color: #fff;
+  border: none;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  box-shadow: 0 6px 18px rgba(37,99,235,0.18);
+  cursor: pointer;
+  font-weight: 700;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.info-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 10px 26px rgba(37,99,235,0.22); }
+
+/* Charts container & sizing */
+.chart-card {
+  display: flex;
+  gap: 16px;
+  align-items: stretch;
+}
+.chart-wrapper { flex:1; min-height:260px; display:flex; flex-direction:column; gap:8px; }
+
+/* first chart smaller (doughnut) */
+.chart-card .chart-wrapper:first-child {
+  flex: 0 0 320px;
+  max-width: 360px;
+  min-width: 240px;
+}
+.chart-card .chart-wrapper:last-child { flex: 1 1 auto; min-width: 220px; }
+.chart-card .chart-wrapper canvas { max-height: 300px; width: 100% !important; }
+
+/* Card sector / listado */
+.card-sector {
+  margin-top:12px;
+  padding:12px;
+  border-radius:10px;
+  background:linear-gradient(135deg,#ffffff,#f3fbff);
+  box-shadow:0 10px 30px rgba(2,20,40,0.04);
+  border:1px solid rgba(2,20,40,0.03);
+}
+
+/* Evento - listado */
+.event-list { list-style:none; padding:0; margin:0; display:grid; gap:12px; }
+.event-item {
+  display:grid;
+  grid-template-columns: 1fr;
+  gap:8px;
+  align-items:start;
+  background:linear-gradient(180deg,#ffffff 0%,#fbfdff 100%);
+  border-radius:12px;
+  padding:14px;
+  box-shadow: 0 6px 18px rgba(12,34,56,0.06);
+  border: 1px solid rgba(15,23,42,0.04);
+  transition: transform 220ms cubic-bezier(.2,.9,.3,1), box-shadow 220ms ease, background 220ms ease;
+  overflow:hidden;
+  position:relative;
+  min-height:84px;
+}
+.event-item:hover { transform: translateY(-6px) scale(1.006); box-shadow: 0 12px 36px rgba(8,28,56,0.12); }
+
+.event-header { display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.event-title {
+  font-size:1rem; font-weight:700; color:#05203C; line-height:1.15;
+  max-width: calc(100% - 120px);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.event-time { font-size:0.82rem; color:#66788a; white-space:nowrap; }
+
+.event-body { display:flex; flex-direction:column; gap:8px; }
+.event-desc {
+  font-size:0.92rem; color:#2f3b45;
+  max-height:44px; overflow:hidden; transition: max-height 280ms ease, color 180ms ease;
+}
+.event-item:hover .event-desc { max-height:240px; color:#0b293f; }
+
+.event-meta { display:flex; gap:8px; align-items:center; flex-wrap:wrap; font-size:0.85rem; color:#536b7a; }
+.meta-item { font-weight:600; }
+.meta-sep { opacity:0.45; margin:0 4px; }
+
+.tags-inline { margin-top:8px; display:flex; gap:8px; flex-wrap:wrap; }
+.tag-inline {
+  padding:6px 10px; border-radius:999px; color:white; font-size:12px; font-weight:600;
+  display:inline-flex; align-items:center; justify-content:center;
+  box-shadow: 0 2px 8px rgba(8,24,48,0.06);
+}
+
+/* Empty list */
+.empty-list { padding: 16px; color: #546b78; }
+
+/* Modal (ranking) */
+.info-overlay {
+  position: fixed; inset: 0;
+  background: rgba(2,6,23,0.45);
+  display:flex; align-items:center; justify-content:center;
+  z-index: 1200; padding: 1.2rem;
+}
+.info-panel {
+  width: min(760px, 95%);
+  max-height: 86vh;
+  overflow-y: auto;
+  background: linear-gradient(180deg,#fff,#f6fbff);
+  border-radius: 14px;
+  box-shadow: 0 18px 50px rgba(0,0,0,0.35);
+  padding: 1rem;
+  position: relative;
+  border: 1px solid rgba(3,37,76,0.06);
+}
+.info-header { display:flex; align-items:center; justify-content:space-between; gap:1rem; border-bottom:1px solid rgba(0,0,0,0.05); padding-bottom:0.6rem; margin-bottom:0.8rem; }
+.info-header h3 { margin:0; color:#002a5c; }
+.close-btn { background: transparent; border: none; font-size: 1.05rem; cursor: pointer; padding: 0.35rem; }
+.info-body { padding: 0.2rem 0 0.6rem 0; color: #16324f; }
+.ranking-list { list-style:none; padding:0; margin:0; display:grid; gap:8px; }
+.ranking-item { display:flex; justify-content:space-between; align-items:center; padding:10px; background: rgba(2,6,23,0.03); border-radius:10px; }
+.rank-left { display:flex; align-items:center; gap:12px; }
+.rank-pos { font-weight:700; font-size:1.05rem; color:#0b66b2; }
+.rank-name { font-weight:700; color:#05203C; }
+.rank-right { text-align:right; }
+.rank-count { font-weight:700; }
+.rank-avg { font-size:0.9rem; color:#4b6476; }
+.tip { margin-top:0.8rem; font-size:0.95rem; color:#12314a; }
+
+/* Responsive adjustments */
+@media (max-width: 880px) {
+  .chart-card { flex-direction: column; }
+  .chart-wrapper + .chart-wrapper { margin-top: 12px; }
+  .event-title { max-width: 100%; white-space: normal; }
+  .filtros-tags { width: 100%; margin-top: 8px; justify-content: flex-start; }
+  .atajos-fecha { width: 100%; order: 1; }
+}
+
+@media (max-width: 768px) {
+  .exports { justify-content: center; }
+  .contenedor-reporte { margin-bottom: 12vh; padding: 12px; }
+  .info-panel { padding: 0.8rem; border-radius: 10px; }
+}
+
+/* Mobile fix para inputs fecha (sin margin-left que cortaba) */
+@media (max-width: 650px) {
+  .inputs-fecha {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    padding: 10px;
+  }
+  .inputs-fecha-buttom {
+    width: 100%;
+    justify-content: center;
+  }
+  .inputs-fecha button {
+    width: 100%;
+    text-align: center;
+  }
+}
