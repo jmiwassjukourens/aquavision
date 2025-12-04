@@ -1,210 +1,128 @@
 # 💧 AquaVision — Smart Water Monitoring System
 
-AquaVision is an intelligent water-monitoring platform designed to help households and institutions understand, analyze, and reduce daily water consumption. By combining IoT devices, real-time processing, predictive analytics, and gamification, AquaVision transforms raw sensor data into actionable insights.
-
-This project was developed as a final engineering project, integrating hardware, backend, frontend, data processing, and UX into a complete working prototype.
+AquaVision is a smart water-monitoring platform that helps households and institutions understand, analyze, and reduce daily water consumption.  
+This project integrates **hardware + backend + frontend + analytics**, built as a complete engineering final project.
 
 ---
 
 ## 🌍 Problem Statement
+Most households lack real-time visibility into water usage.  
+Traditional meters only show cumulative numbers — making it impossible to detect leaks, waste, or inefficient habits.
 
-Most households lack real-time visibility into how water is consumed.  
-Traditional water meters only show cumulative usage, making it impossible to identify leaks, inefficiencies, or wasteful routines.
-
-**Without data, there is no awareness — and without awareness, there is no improvement.**
-
-AquaVision solves this by offering:
-
-- Real-time consumption monitoring  
-- Sector-based breakdown (kitchen, bathroom, patio, etc.)  
-- Predictive consumption models  
-- Smart alerts and notifications  
-- Gamification elements to encourage habit change  
+**AquaVision solves this by offering real-time insights, predictions, alerts, sector-based breakdowns, and gamification tools.**
 
 ---
 
 ## 🎯 Main Objectives
-
-- Monitor household water consumption in real time  
-- Detect abnormal usage and potential leaks  
-- Predict future consumption and cost estimation  
-- Encourage sustainable habits through gamification  
-- Provide exportable data for institutions and providers  
-- Enable future Smart City integrations  
+- Real-time monitoring of water consumption  
+- Leak and abnormal-usage detection  
+- Predictive analytics & cost estimation  
+- Encouraging sustainable habits via gamification  
+- Exportable data for institutions  
+- Scalable Smart City integration  
 
 ---
 
-## 🔧 System Architecture
-
-AquaVision is composed of four main layers:
+## 🧱 System Architecture
 
 ### **Hardware Layer**
-- Flow meter (caudalímetro)  
-- ESP32 microcontroller  
-- Wi-Fi communication  
+- ESP32  
+- Flow meter sensor  
+- Wi-Fi data transmission
 
 ### **Communication Layer**
-- HTTP/MQTT device-to-server communication  
-- Continuous transmission of flow data  
+- HTTP/MQTT messages from device to server  
+- Continuous flow-rate data publishing
 
 ### **Backend Layer**
-- **Spring Boot**  
-- Authentication, processing, predictions, and storage  
-- Exposes REST API  
+- Spring Boot  
+- Authentication, processing, storage, prediction models  
+- REST API for frontend consumption
 
 ### **Frontend Layer**
-- **Angular**  
-- Dashboards, reports, notifications, gamification  
-- Responsive and intuitive UI  
+- Angular  
+- Dashboards, reports, notifications  
+- Fully responsive
 
-📌 *Suggested Screenshot:*  
-*Architecture diagram showing Sensor → Backend → Database → Frontend*
-
----
-
-## 🖥️ Features Overview
-
-### ✅ Real-Time Monitoring
-Track consumption by hour, day, month, and per household sector.  
-📌 *Suggested Screenshot:* Real-time dashboard comparing today's usage vs yesterday.
+### 📸 Architecture Diagram  
+![Architecture](assets/architecture.png)
 
 ---
 
-### ✅ Daily & Historical Reports
-Generate detailed graphs by date range and sector, including cost estimation.  
-📌 *Suggested Screenshot:* Sector breakdown & costs.
+# 🖥️ Features Overview
 
 ---
 
-### ✅ Activity Tracking
-Register activities (shower, washing dishes, washing car, etc.) and correlate them with consumption peaks.  
-📌 *Suggested Screenshot:* Activities timeline view.
+## ✅ Real-Time Monitoring
+Track consumption live by hour, day, month, and per household sector.
+
+### 📸 Real-Time Dashboard  
+![Dashboard](assets/dashboard.png)
 
 ---
 
-### ✅ Smart Notifications
-Receive alerts for:
+## ✅ Daily & Historical Reports
+Generate detailed charts per sector, with consumption averages and cost estimation.
 
+### 📸 Daily Reports  
+![Daily Report 1](assets/dailyReport.png)  
+![Daily Report 2](assets/dailyReport2.png)
+
+### 📸 Historical Report  
+![Historical Report](assets/historicalReport.png)
+
+---
+
+## ✅ Activity Tracking
+Register and visualize activities such as showers, dishwashing, laundry, etc., and correlate them with peaks in consumption.
+
+### 📸 Activities Timeline  
+![Activities](assets/activities.png)
+
+---
+
+## ✅ Smart Notifications
+Receive alerts about:
+
+- Suspected leaks  
 - Abnormal consumption  
-- Possible leak  
-- Predicted usage threshold exceeded  
-- Device disconnected  
+- Threshold predictions  
+- Device disconnection  
 - Daily gamification reminders  
 
-📌 *Suggested Screenshot:* Notifications panel.
+### 📸 Notifications Panel  
+![Notifications Panel](assets/notiticationPanel.png)
 
 ---
 
-### ✅ Predictive Analysis
-Uses historical data to forecast future consumption.
+# 📱 Responsive Mobile Screenshots
+Fully responsive design for mobile and tablet.
 
-Displays:
-- Current usage  
-- Predicted trend  
-- Min/Max estimation  
-
-📌 *Suggested Screenshot:* Prediction graph.
+![Responsive 1](assets/responsive1.png)  
+![Responsive 2](assets/responsive2.png)  
+![Responsive 3](assets/responsive3.png)
 
 ---
 
-### ✅ Gamification System
-Encourages sustainable water behavior through:
-
-- Conservation quizzes  
-- Daily/weekly challenges  
-- Streaks & achievements  
-- Points and rankings  
-
-📌 *Suggested Screenshot:* Gamification page with trivia & points.
-
----
-
-### ✅ Admin Panel
-For institutions and water providers:
-
-- Global system metrics  
-- Anonymous aggregated data  
-- Exportable reports (PDF/Excel)  
-- Locality-based analysis  
-
-📌 *Suggested Screenshot:* Admin dashboard.
-
----
-
-## 🧪 Validation & Testing
-
-The system was validated in controlled environments using simulated and real water flow (aquarium + flow sensor).
-
-**Tests performed:**
-- Functional testing  
-- Load & concurrency simulations  
-- Manual behavioral validation  
-
----
-
-## 🛠️ Technologies Used
-
-### **Backend**
-- Java  
-- Spring Boot  
-- REST API  
-- JWT Security  
-- MySQL  
+## ⭐ Tech Stack
 
 ### **Frontend**
 - Angular  
 - TypeScript  
-- Chart.js / ApexCharts  
-- Bootstrap / Tailwind CSS  
+- NgCharts  
+- SCSS  
+
+### **Backend**
+- Spring Boot  
+- Java  
+- JPA / Hibernate  
+- MySQL  
 
 ### **Hardware**
 - ESP32  
 - Flow Sensor  
-- Wi-Fi Module  
-
-### **Other Tools**
-- Git / GitHub  
-- Postman  
-- Canva / Figma  
-- Power BI (optional reporting)
+- Custom firmware  
 
 ---
 
-## 🚀 How to Run the Application
 
-Run the full system (backend, frontend, and database setup) with:
-
-```bash
-./start.sh
-
-Before running, configure environment variables inside start.sh:
-
-# Database configuration
-DB_NAME="notesdb"
-DB_USER="root"
-DB_PASS="123456"
-DB_HOST="localhost"
-DB_PORT="3306"
-
-BACKEND_DIR="./backend"
-FRONTEND_DIR="./frontend"
-
-# Adjust according to your system
-MYSQL_CMD="/c/Program Files/MySQL/MySQL Server 8.0/bin/mysql.exe"
-
-The script will:
-
-Create/verify database
-
-Export backend variables
-
-Launch Spring Boot API
-
-Install & start Angular frontend
-
-🔐 Default Credentials
-Username: aquavision
-Password: test123
-
-
-(Only for demo/testing purposes)
