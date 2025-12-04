@@ -137,12 +137,8 @@ The system was validated in controlled environments using simulated and real wat
 
 **Tests performed:**
 - Functional testing  
-- Integration testing (Sensor → API → UI)  
 - Load & concurrency simulations  
 - Manual behavioral validation  
-
-**Outcome:**  
-High accuracy in detecting consumption patterns and anomalies.
 
 ---
 
