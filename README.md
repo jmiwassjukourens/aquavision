@@ -76,7 +76,7 @@ Generate detailed charts per sector, with consumption averages and cost estimati
 ## ✅ Activity Tracking
 Register and visualize activities such as showers, dishwashing, laundry, etc., and correlate them with peaks in consumption.
 
-### 📸 Activities Timeline  
+### 📸 Activities Timeline (with zoom)
 ![Activities](assets/activities.png)
 
 ---
