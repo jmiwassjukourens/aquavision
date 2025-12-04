@@ -91,7 +91,7 @@ Receive alerts about:
 - Daily gamification reminders  
 
 ### 📸 Notifications Panel  
-![Notifications Panel](assets/notiticationPanel.png)
+![Notifications Panel](assets/notificationPanel.png)
 
 ---
 
